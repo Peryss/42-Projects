@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/08 13:42:05 by pvass             #+#    #+#             */
-/*   Updated: 2024/04/08 13:42:07 by pvass            ###   ########.fr       */
+/*   Created: 2024/04/09 16:33:59 by pvass             #+#    #+#             */
+/*   Updated: 2024/04/09 16:39:36 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_toupper(int ch)
+t_list	*ft_lstlast(t_list *lst)
 {
-	if (ft_isalpha(ch) == 2)
-		ch = ch - 32;
-	return (ch);
+	if (lst == NULL)
+		return (NULL);
+	while (lst[0].next != NULL)
+		lst = lst -> next;
+	return (lst);
 }
-/*
-int main()
-{
-    int a = 'a';
-    int b = '+';
-    
-    printf ("a: %c\n", (char) ft_toupper(a));
-    printf ("+: %c\n", (char) ft_toupper(b));
-    return (0);
-}
-*/

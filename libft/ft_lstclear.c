@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/08 13:42:05 by pvass             #+#    #+#             */
-/*   Updated: 2024/04/08 13:42:07 by pvass            ###   ########.fr       */
+/*   Created: 2024/04/09 17:19:36 by pvass             #+#    #+#             */
+/*   Updated: 2024/04/09 17:28:09 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_toupper(int ch)
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	if (ft_isalpha(ch) == 2)
-		ch = ch - 32;
-	return (ch);
+	t_list	*i;
+	t_list	*temp;
+
+	i = *lst;
+	if (*lst == NULL)
+		return ;
+	while (i != NULL)
+	{
+		temp = i -> next;
+		ft_lstdelone(i, del);
+		i = temp;
+	}
+	*lst = NULL;
 }
-/*
-int main()
-{
-    int a = 'a';
-    int b = '+';
-    
-    printf ("a: %c\n", (char) ft_toupper(a));
-    printf ("+: %c\n", (char) ft_toupper(b));
-    return (0);
-}
-*/
