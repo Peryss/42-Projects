@@ -22,13 +22,6 @@ static int	ft_strlen2(const char *str, char c)
 	return (i);
 }
 
-static int	sep(char c, char charset)
-{
-	if (charset == c)
-		return (1);
-	return (0);
-}
-
 static char	*ft_strdup2(char *src, char charset)
 {
 	char	*ptr;
@@ -38,7 +31,7 @@ static char	*ft_strdup2(char *src, char charset)
 	ptr = (char *) malloc(ft_strlen2(src, charset) + 1);
 	if (ptr == NULL)
 		return (NULL);
-	while (*src != '\0' && sep(*src, charset) == 0)
+	while (*src != '\0' && *src != charset)
 	{
 		ptr[i] = *src;
 		src++;
@@ -57,11 +50,21 @@ static int	count_words(char *str, char s)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		if (sep(str[i], s) == 0 && (sep(str[i - 1], s) == 1 || i == 0))
+		if (str[i] != s && (i == 0 || str[i - 1] == s))
 			j++;
 		i++;
 	}
 	return (j + 1);
+}
+
+static void ft_free_all(char **tab, int i)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i] != NULL)
+		free (tab[i]);
+	free(tab);
 }
 
 char	**ft_split(char const *s, char c)
@@ -77,9 +80,11 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	while (s[i] != '\0')
 	{
-		if (sep(s[i], c) == 0 && (sep(s[i - 1], c) == 1 || i == 0))
+		if (s[i] != c && (i == 0 || s[i - 1] == c))
 		{
 			tab[j] = ft_strdup2((char *)s + i, c);
+			if (tab[j] == NULL)
+				return (ft_free_all(tab, j), NULL);
 			i++;
 			j++;
 		}
