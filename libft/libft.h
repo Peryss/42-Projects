@@ -57,8 +57,6 @@ int		ft_isascii(int arg);
 
 int		ft_isprint(int arg);
 
-int		ft_strlen(const char *str);
-
 int		ft_tolower(int ch);
 
 int		ft_toupper(int ch);
@@ -86,6 +84,8 @@ char	*ft_itoa(int n);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 
 char	**ft_split(char const *s, char c);
+
+size_t	ft_strlen(const char *str);
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 
