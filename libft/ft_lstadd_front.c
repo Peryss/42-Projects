@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 16:22:01 by pvass             #+#    #+#             */
-/*   Updated: 2024/04/09 16:27:01 by pvass            ###   ########.fr       */
+/*   Updated: 2024/04/13 17:25:12 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	new[0].next = lst[0];
-	lst[0] = new;
+	if (lst == NULL)
+		return ;
+	new -> next = *lst;
+	*lst = new;
 }

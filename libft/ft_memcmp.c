@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 13:30:26 by pvass             #+#    #+#             */
-/*   Updated: 2024/04/08 13:31:00 by pvass            ###   ########.fr       */
+/*   Updated: 2024/04/13 18:02:47 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int	ft_memcmp(const void *str1, const void *str2, size_t n)
 	return (0);
 }
 
-/*
-#include <stdio.h>
+/* #include <stdio.h>
+#include <string.h>
 
 int main () {
    char str1[15];
@@ -40,8 +40,8 @@ int main () {
 
    memcpy(str1, "abcdef", 6);
    memcpy(str2, "ABCDEF", 6);
-
-   ret = ft_memcmp(str1, str2, 5);
+   printf("%d\n", strncmp(NULL, str2, 2));
+   ret = ft_memcmp(NULL, str2, 5);
 
    if(ret > 0) {
       printf("str2 is less than str1");
@@ -53,4 +53,4 @@ int main () {
    
    return(0);
 }
-*/
+ */

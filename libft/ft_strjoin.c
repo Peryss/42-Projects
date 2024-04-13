@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 11:33:52 by pvass             #+#    #+#             */
-/*   Updated: 2024/04/09 12:21:48 by pvass            ###   ########.fr       */
+/*   Updated: 2024/04/13 18:07:06 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	char	*ptr;
 	char	*ptr2;
 
+	if (s1 == NULL || s2 == NULL)
+		return (NULL);
 	ptr = (char *) malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (ptr == NULL)
 		return (NULL);

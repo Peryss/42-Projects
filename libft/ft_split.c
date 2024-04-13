@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 13:20:32 by pvass             #+#    #+#             */
-/*   Updated: 2024/04/09 13:48:59 by pvass            ###   ########.fr       */
+/*   Updated: 2024/04/11 16:15:43 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,17 @@ static int	count_words(char *str, char s)
 	return (j + 1);
 }
 
-static void ft_free_all(char **tab, int i)
+static void	ft_free_all(char **tab, int i)
 {
-	int	i;
+	int	j;
 
-	i = 0;
-	while (tab[i] != NULL)
-		free (tab[i]);
-	free(tab);
+	j = 0;
+	while (i > j)
+	{
+		free (tab[j]);
+		j++;
+	}
+	free (tab);
 }
 
 char	**ft_split(char const *s, char c)

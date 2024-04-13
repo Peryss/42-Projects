@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 13:34:22 by pvass             #+#    #+#             */
-/*   Updated: 2024/04/08 18:02:47 by pvass            ###   ########.fr       */
+/*   Updated: 2024/04/13 18:04:12 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,13 @@ char	*ft_strchr(const char *str, int c)
 	unsigned int	i;
 
 	i = 0;
-	if (c > 127)
-		c = c % 128;
 	while (str[i] != '\0')
 	{
-		if (str[i] == c)
+		if (str[i] == (char) c)
 			return ((char *)str + i);
 		i++;
 	}
-	if (str[i] == c)
+	if (str[i] == (char) c)
 		return ((char *)str + i);
 	return (0);
 }

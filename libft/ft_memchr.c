@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 13:29:37 by pvass             #+#    #+#             */
-/*   Updated: 2024/04/08 18:50:08 by pvass            ###   ########.fr       */
+/*   Updated: 2024/04/13 18:02:27 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ void	*ft_memchr(const void *str, int c, size_t n)
 
 	ptr = (unsigned char *)str;
 	i = 0;
-	if (c > 255)
-		c = c % 256;
 	while (i < n)
 	{
 		if (ptr[i] == (unsigned char)c)

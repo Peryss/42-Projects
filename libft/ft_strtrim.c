@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 11:52:13 by pvass             #+#    #+#             */
-/*   Updated: 2024/04/09 13:10:45 by pvass            ###   ########.fr       */
+/*   Updated: 2024/04/13 18:58:46 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,10 @@ char	*ft_strtrim(char const *s1, char const *set)
 
 	j = 0;
 	i = 0;
+	if (s1 == NULL)
+		return (NULL);
+	if (set == NULL)
+		return ((char *) s1);
 	while (set[i] != '\0')
 	{
 		if (set[i] == s1[j])
@@ -76,9 +80,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	ptr = (char *) malloc (len + 1);
 	if (ptr == NULL)
 		return (NULL);
-	ptr = ft_strncpy(ptr, (char *)s1 + j, len);
-	ptr[len] = '\0';
-	return (ptr);
+	return (ptr = ft_strncpy(ptr, (char *)s1 + j, len), ptr[len] = '\0', ptr);
 }
 
 /*

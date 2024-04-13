@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:43:32 by pvass             #+#    #+#             */
-/*   Updated: 2024/04/09 14:48:26 by pvass            ###   ########.fr       */
+/*   Updated: 2024/04/13 18:24:21 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 	size_t	i;
 
 	i = 0;
+	if (f == NULL || s == NULL)
+		return ;
 	while (s[i] != '\0')
 	{
 		f(i, s + i);

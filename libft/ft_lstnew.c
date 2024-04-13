@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 16:11:48 by pvass             #+#    #+#             */
-/*   Updated: 2024/04/09 16:20:53 by pvass            ###   ########.fr       */
+/*   Updated: 2024/04/13 17:27:21 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_list	*ft_lstnew(void *content)
 	new = (t_list *) malloc (sizeof(t_list));
 	if (new == NULL)
 		return (NULL);
-	new[0].content = content;
-	new[0].next = NULL;
+	new -> content = content;
+	new -> next = NULL;
 	return (new);
 }

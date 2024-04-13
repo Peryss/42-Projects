@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 13:41:06 by pvass             #+#    #+#             */
-/*   Updated: 2024/04/08 18:03:49 by pvass            ###   ########.fr       */
+/*   Updated: 2024/04/13 18:09:42 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,11 @@ char	*ft_strrchr(char *str, int c)
 	int	i;
 
 	i = ft_strlen(str) - 1;
-	if (c > 127)
-		c = c % 128;
-	if (str[i + 1] == c)
+	if (str[i + 1] == (char) c)
 		return (str + i + 1);
 	while (i >= 0)
 	{
-		if (str[i] == c)
+		if (str[i] == (char) c)
 			return (str + i);
 		i--;
 	}

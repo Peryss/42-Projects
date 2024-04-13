@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 13:51:31 by pvass             #+#    #+#             */
-/*   Updated: 2024/04/09 19:54:04 by pvass            ###   ########.fr       */
+/*   Updated: 2024/04/13 17:46:06 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	*ft_calloc(size_t nitems, size_t size)
 
 	i = 0;
 	if (nitems == 0 || size == 0)
+		return (malloc(0));
+	if (size > SIZE_MAX / nitems)
 		return (NULL);
 	ptr = (char *) malloc (nitems * size);
 	if (ptr == NULL)

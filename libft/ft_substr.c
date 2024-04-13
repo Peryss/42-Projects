@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 19:31:06 by pvass             #+#    #+#             */
-/*   Updated: 2024/04/09 18:54:16 by pvass            ###   ########.fr       */
+/*   Updated: 2024/04/13 18:11:32 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ static char	*ft_strncpy(char *dest, char *src, unsigned int n)
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char			*ptr;
-	unsigned long	nr;
+	unsigned int	nr;
 
 	nr = len + 1;
 	if (s == NULL)
 		return (NULL);
-	if ((unsigned int)ft_strlen(s) > start)
+	if (ft_strlen(s) > start)
 	{
-		if ((size_t)ft_strlen(s + start) <= len)
+		if (ft_strlen(s + start) <= len)
 			nr = ft_strlen(s + start) + 1;
 		ptr = (char *) malloc (nr);
 		if (ptr == NULL)

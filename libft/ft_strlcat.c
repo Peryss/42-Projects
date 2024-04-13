@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 13:34:52 by pvass             #+#    #+#             */
-/*   Updated: 2024/04/08 19:29:27 by pvass            ###   ########.fr       */
+/*   Updated: 2024/04/11 15:54:58 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static size_t	res(char *dst, const char *src, size_t size)
 	res = ft_strlen (src) + ft_strlen(dst);
 	if (size == 0)
 		return (ft_strlen(src));
-	if ((int) size < ft_strlen(dst))
+	if (size < ft_strlen(dst))
 		res = size + ft_strlen(src);
 	if ((int) size < 0)
 		res = ft_strlen(src) + ft_strlen(dst);
