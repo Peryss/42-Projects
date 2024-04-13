@@ -1,5 +1,16 @@
-#include "libft.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_hexupdown.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/13 20:25:19 by pvass             #+#    #+#             */
+/*   Updated: 2024/04/13 20:25:20 by pvass            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "libft.h"
 
 static void	ft_puthexup(unsigned long long nbr)
 {
@@ -50,8 +61,8 @@ int	ft_hex (long long nbr, char c)
 	return (i);
 }
 
-int main ()
+/* int main ()
 {
 	ft_hex(123456789, 'x');
 	return (0);
-}
+} */

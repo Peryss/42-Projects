@@ -1,47 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putunsigned.c                                   :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/13 20:25:45 by pvass             #+#    #+#             */
-/*   Updated: 2024/04/13 20:25:46 by pvass            ###   ########.fr       */
+/*   Created: 2024/04/09 14:53:53 by pvass             #+#    #+#             */
+/*   Updated: 2024/04/09 15:29:55 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "libft.h"
 
-static void	ft_putun(unsigned int nbr)
+void	ft_putstr_fd(char *s, int fd)
 {
-	if (nbr >= 10)
-	{
-		ft_putun(nbr / 10);
-		ft_putun(nbr % 10);
-	}
-	else 
-	{
-		ft_putchar_fd(nbr + '0', 1);
-	}
-}
-
-int	ft_putunsigned (unsigned int nbr)
-{
-	int i;
+	size_t	i;
 
 	i = 0;
-	ft_putun(nbr);
-	while (nbr > 0)
+	while (s[i] != '\0')
 	{
-		nbr = nbr / 10;
+		ft_putchar_fd(s[i], fd);
 		i++;
 	}
-	return (i);
 }
-
-/* int main()
-{
-	ft_putunsigned(4568);
-	return (0);
-} */
