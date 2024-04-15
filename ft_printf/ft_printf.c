@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 20:25:36 by pvass             #+#    #+#             */
-/*   Updated: 2024/04/15 19:12:38 by pvass            ###   ########.fr       */
+/*   Updated: 2024/04/15 19:17:33 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "./includes/ft_printf.h"
 
 /*SOLVE FOR "%gs %:"*/
+/*check if the string is NULL return should be maybe -1*/
 
 
 static int	ft_print_spec(va_list arg, char c)
