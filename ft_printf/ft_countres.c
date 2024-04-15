@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putunsigned.c                                   :+:      :+:    :+:   */
+/*   ft_countres.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/13 20:25:45 by pvass             #+#    #+#             */
-/*   Updated: 2024/04/13 20:25:46 by pvass            ###   ########.fr       */
+/*   Created: 2024/04/13 20:25:14 by pvass             #+#    #+#             */
+/*   Updated: 2024/04/15 18:54:54 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "./includes/libft.h"
+#include "./includes/ft_printf.h"
 
-#include "libft.h"
-
-static void	ft_putun(unsigned int nbr)
+int	ft_putnbr2(int nbr)
 {
-	if (nbr >= 10)
-	{
-		ft_putun(nbr / 10);
-		ft_putun(nbr % 10);
-	}
-	else 
-	{
-		ft_putchar_fd(nbr + '0', 1);
-	}
-}
-
-int	ft_putunsigned (unsigned int nbr)
-{
-	int i;
+	int		i;
 
 	i = 0;
-	ft_putun(nbr);
-	while (nbr > 0)
+	ft_putnbr_fd(nbr, 1);
+	if (nbr == 0)
+		return (1);
+	if (nbr < 0)
+		i++;
+	while (nbr != 0)
 	{
 		nbr = nbr / 10;
 		i++;
@@ -40,8 +31,13 @@ int	ft_putunsigned (unsigned int nbr)
 	return (i);
 }
 
-/* int main()
+int	ft_putstr2(char *ptr)
 {
-	ft_putunsigned(4568);
-	return (0);
-} */
+	if (ptr == NULL)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
+	ft_putstr_fd(ptr, 1);
+	return (ft_strlen(ptr));
+}

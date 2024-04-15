@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_countres.c                                      :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/13 20:25:14 by pvass             #+#    #+#             */
-/*   Updated: 2024/04/13 20:33:40 by pvass            ###   ########.fr       */
+/*   Created: 2024/04/09 14:53:53 by pvass             #+#    #+#             */
+/*   Updated: 2024/04/15 18:04:30 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_putnbr2(int nbr)
+void	ft_putstr_fd(char *s, int fd)
 {
-	int		res;
-	char	*ptr;
+	size_t	i;
 
-	res = 0;
-	ft_putnbr_fd(nbr, 1);
-	ptr = ft_itoa(nbr);
-	res = ft_strlen(ptr);
-	free (ptr);
-	return (res);
-}
-
-int ft_putstr2(char *ptr)
-{
-	ft_putstr_fd(ptr, 1);
-	return (ft_strlen(ptr));
+	i = 0;
+	while (s[i] != '\0')
+	{
+		ft_putchar_fd(s[i], fd);
+		i++;
+	}
 }

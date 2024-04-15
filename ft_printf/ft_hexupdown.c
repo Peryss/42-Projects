@@ -6,20 +6,21 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 20:25:19 by pvass             #+#    #+#             */
-/*   Updated: 2024/04/13 20:25:20 by pvass            ###   ########.fr       */
+/*   Updated: 2024/04/15 18:22:23 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "./includes/libft.h"
+#include "./includes/ft_printf.h"
 
-static void	ft_puthexup(unsigned long long nbr)
+static void	ft_puthexup(unsigned int nbr)
 {
 	if (nbr >= 16)
 	{
 		ft_puthexup(nbr / 16);
 		ft_puthexup(nbr % 16);
 	}
-	else 
+	else
 	{
 		if (nbr <= 9)
 			ft_putchar_fd(nbr + '0', 1);
@@ -28,14 +29,14 @@ static void	ft_puthexup(unsigned long long nbr)
 	}
 }
 
-static void	ft_puthexdown(unsigned long long nbr)
+static void	ft_puthexdown(unsigned int nbr)
 {
 	if (nbr >= 16)
 	{
 		ft_puthexdown(nbr / 16);
 		ft_puthexdown(nbr % 16);
 	}
-	else 
+	else
 	{
 		if (nbr <= 9)
 			ft_putchar_fd(nbr + '0', 1);
@@ -44,15 +45,17 @@ static void	ft_puthexdown(unsigned long long nbr)
 	}
 }
 
-int	ft_hex (long long nbr, char c)
+int	ft_hex(unsigned int nbr, char c)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (c == 'X')
 		ft_puthexup(nbr);
 	if (c == 'x')
 		ft_puthexdown(nbr);
+	if (nbr == 0)
+		return (1);
 	while (nbr > 0)
 	{
 		nbr = nbr / 16;

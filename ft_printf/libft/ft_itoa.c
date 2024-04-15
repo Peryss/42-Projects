@@ -6,11 +6,12 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 13:50:51 by pvass             #+#    #+#             */
-/*   Updated: 2024/04/09 14:27:47 by pvass            ###   ########.fr       */
+/*   Updated: 2024/04/15 18:56:06 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <limits.h>
 
 static char	*ft_strncpy(char *dest, char *src, unsigned int n)
 {
@@ -63,7 +64,7 @@ static char	*allo(int n)
 	i = 0;
 	if (n == 0)
 		i = 1;
-	if (n == -2147483648)
+	if (n == INT_MIN)
 	{
 		ptr = (char *) malloc (12);
 		if (ptr == NULL)
@@ -89,7 +90,7 @@ char	*ft_itoa(int n)
 	char	*str;
 
 	str = allo(n);
-	if (str == NULL || ft_strncmp(str, "-2147483648", 12) == 0)
+	if (str == NULL || ft_strncmp(str, "-2147483648", 11) == 0)
 		return (str);
 	i = 0;
 	if (n <= 0)

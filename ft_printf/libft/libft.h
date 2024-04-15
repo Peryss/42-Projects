@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 13:42:37 by pvass             #+#    #+#             */
-/*   Updated: 2024/04/15 11:57:15 by pvass            ###   ########.fr       */
+/*   Updated: 2024/04/11 16:01:46 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,15 +112,4 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
-/*printf*/
-
-int	ft_putpointer (unsigned long long ptr);
-
-int	ft_putunsigned (unsigned int nbr);
-
-int	ft_hex (long long nbr, char c);
-
-int	ft_putnbr2(int nbr);
-
-int ft_putstr2(char *ptr);
 #endif
