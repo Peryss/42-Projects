@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 20:25:59 by pvass             #+#    #+#             */
-/*   Updated: 2024/04/13 20:26:06 by pvass            ###   ########.fr       */
+/*   Updated: 2024/04/15 11:44:22 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@ int	ft_putpointer (unsigned long long ptr)
 	int	len;
 
 	len = 2;
+	if (ptr == 0)
+	{
+		ft_putstr_fd("(nil)", 1);
+		return (5);
+	}
 	ft_putstr_fd("0x", 1);
 	if (ptr == 0)
 		return (ft_putchar_fd('0', 1), 3);

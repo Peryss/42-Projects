@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 20:25:36 by pvass             #+#    #+#             */
-/*   Updated: 2024/04/13 20:42:43 by pvass            ###   ########.fr       */
+/*   Updated: 2024/04/15 11:58:47 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_putnbr2(int nbr);
 
 int ft_putstr2(char *ptr);
 
-static int  count_w(const char *format)
+/* static int  count_w(const char *format)
 {
     int i;
     int count;
@@ -38,7 +38,7 @@ static int  count_w(const char *format)
 		i++;
     }
 	return (count);
-}
+} */
 
 static int	ft_print_spec(va_list arg, char c)
 {
@@ -64,7 +64,7 @@ static int	ft_print_spec(va_list arg, char c)
 	return (res);
 }
 
-static int	solve(const char *str, va_list arg, int wc)
+static int	solve(const char *str, va_list arg)
 {
 	size_t	i;
 	int res;
@@ -93,12 +93,13 @@ static int	solve(const char *str, va_list arg, int wc)
 int ft_printf(const char *format, ...)
 {
 	int		res;
-    int		wc;
+/*     int		wc; */
 	va_list	arg;
 	
-    wc = count_w(format);
+	res = 0;
+/*     wc = count_w(format); */
 	va_start(arg, format);
-	res = solve(format, arg, wc);
+	res = solve(format, arg);
 	va_end (arg);
 	return (res);
 }
@@ -109,7 +110,10 @@ int main()
 {
 	int x;
 	
-	x = ft_printf("This is the pointer: %%d\n", 15);
-	ft_printf("ft_printf return: %d\n", x);
+	x = ft_printf("The pointer is: %p, %d %c\n", NULL, 15, 'c');
+	ft_printf("ft_printf return: %d\n\n", x);
+
+	x = printf("The pointer is: %p, %d %c\n", NULL, 15, 'c');
+	printf("Printf return: %d\n\n", x);
 	return (0);
 }
