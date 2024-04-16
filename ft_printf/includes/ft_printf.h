@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 12:20:47 by pvass             #+#    #+#             */
-/*   Updated: 2024/04/15 18:22:41 by pvass            ###   ########.fr       */
+/*   Updated: 2024/04/16 16:41:58 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_PRINTF_H
 
 # include <stdint.h>
+# include "libft.h"
 
 /*printf*/
 

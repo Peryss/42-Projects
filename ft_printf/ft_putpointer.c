@@ -6,11 +6,10 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 20:25:59 by pvass             #+#    #+#             */
-/*   Updated: 2024/04/15 17:47:01 by pvass            ###   ########.fr       */
+/*   Updated: 2024/04/16 16:40:28 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/libft.h"
 #include "./includes/ft_printf.h"
 
 static void	ft_putp(uintptr_t ptr)

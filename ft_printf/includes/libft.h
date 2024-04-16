@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 13:42:37 by pvass             #+#    #+#             */
-/*   Updated: 2024/04/11 16:01:46 by pvass            ###   ########.fr       */
+/*   Updated: 2024/04/16 16:39:59 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdint.h>
+# include <stdarg.h>
 
 typedef struct s_list
 {

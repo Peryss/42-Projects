@@ -6,11 +6,10 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 20:25:19 by pvass             #+#    #+#             */
-/*   Updated: 2024/04/15 18:22:23 by pvass            ###   ########.fr       */
+/*   Updated: 2024/04/16 16:39:27 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/libft.h"
 #include "./includes/ft_printf.h"
 
 static void	ft_puthexup(unsigned int nbr)
