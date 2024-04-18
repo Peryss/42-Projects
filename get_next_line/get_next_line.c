@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 17:13:28 by pvass             #+#    #+#             */
-/*   Updated: 2024/04/18 18:06:18 by pvass            ###   ########.fr       */
+/*   Updated: 2024/04/18 23:21:46 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,19 @@ static char	*read_string(int fd, char *str)
 	char	*new;
 	int		pos;
 
-	pos = -1;
+	pos = -2;
+	if (read(fd, 0, 0) < 0)
+		return (free(str), NULL);
 	buffer = (char *)malloc(BUFFER_SIZE + 1);
 	if (buffer == NULL)
-		return (NULL);
+		return (free(str), NULL);
 	if (str == NULL)
 		return (free(buffer), NULL);
+	buffer[0] = '\0';
 	while ((ft_strchr(str, '\n') == NULL) && pos != 0)
 	{
 		pos = read(fd, buffer, BUFFER_SIZE);
-		if (pos <= 0)
+		if (pos <= 0 && ft_strlen(str) == 0)
 			return (free(str), free(buffer), NULL);
 		buffer[pos] = '\0';
 		new = ft_strjoin(str, buffer);
@@ -37,7 +40,7 @@ static char	*read_string(int fd, char *str)
 	return (free(buffer), str);
 }
 
-static char	*get_line(char *str)
+static char	*get_lin(char *str)
 {
 	char	*line;
 	int		i;
@@ -45,13 +48,15 @@ static char	*get_line(char *str)
 
 	i = 0;
 	j = 0;
+	if (str == NULL)
+		return (NULL);
 	while (str[i] != '\0' && str[i] != '\n')
 		i++;
 	if (str[i] == '\n')
 		i++;
 	line = (char *)malloc(i + 1);
 	if (line == NULL)
-		return (free(str), NULL);
+		return (NULL);
 	while (j < i)
 	{
 		line[j] = str[j];
@@ -69,6 +74,8 @@ static char	*left(char *r_str)
 
 	i = 0;
 	j = 0;
+	if (r_str == NULL)
+		return (NULL);
 	while (r_str[i] != '\0' && r_str[i] != '\n')
 		i++;
 	if (r_str[i] == '\n')
@@ -93,7 +100,9 @@ char	*get_next_line(int fd)
 	static int	count;
 	char		*string;
 
-if (count == 0)
+	if (BUFFER_SIZE <= 0 || fd < 0)
+		return (count = 0, NULL);
+	if (count == 0)
 	{
 		r_str = (char *) malloc (1);
 		if (r_str == NULL)
@@ -101,17 +110,15 @@ if (count == 0)
 		r_str[0] = '\0';
 		count++;
 	}
-	if (BUFFER_SIZE <= 0 || fd < 0)
-		return (NULL);
 	r_str = read_string(fd, r_str);
 	if (r_str == NULL)
-		return (NULL);
-	string = get_line(r_str);
+		return (count = 0, NULL);
+	string = get_lin(r_str);
 	if (string == NULL)
-		return (free(r_str), NULL);
+		return (count = 0, free(r_str), NULL);
 	r_str = left(r_str);
 	if (r_str == NULL)
-		return (free(string), NULL);
+		return (count = 0, free(string), NULL);
 	return (string);
 }
 
@@ -119,26 +126,63 @@ if (count == 0)
 {
 	int fd;
 
-	fd = open("numbers.dict", O_RDONLY);
+	fd = open("1char.txt", O_RDONLY);
 	if (fd == -1)
 		return (0);
 	char *str = get_next_line(fd);
 	int len = ft_strlen(str);
-	printf("First line: %c\n", str[ft_strlen(str) - 1]);
+	printf("First line: %s\n", str);
 	free(str);
 	str = get_next_line(fd);
 	printf("Second line: %s\n", str);
-	free(str);
-	str = get_next_line(fd);
-	printf("Third line: %s, length: %d\n", str, len);
-	free(str);
 	close(fd);
+	while (str != NULL)
+	{
+		free(str);
+		str = get_next_line(fd);
+	}
+	free(str);
+	
 	str = get_next_line(fd);
-	len = ft_strlen(str);
-	printf("Forth line: %s, length: %d\n", str, len);
+	printf("Third line: %s\n", str);
+	free(str);
+	
+	//close (fd);
+	fd = open("1char.txt", O_RDONLY);
+	
+	str = get_next_line(fd);
+	printf("Forth line: %s\n", str);
+
+	close (fd);
+	str = get_next_line(fd);
+	
+	printf("Fifth line: %s\n", str);
+	
+	free(str);
+	fd = open("1char.txt", O_RDONLY);
+	str = get_next_line(fd);
+	printf("sixthline: %s\n", str);
 	free(str);
 	str = get_next_line(fd);
-	printf("Fifth line: %s\n", str);
+	printf("seventh line: %s\n", str);
+	free(str);
+	str = get_next_line(fd);
+	printf("eighth line: %s\n", str);
+	free(str);
+	str = get_next_line(fd);
+	printf("9line: %s\n", str);
+	free(str);
+	str = get_next_line(fd);
+	printf("10line: %s\n", str);
+	free(str);
+	str = get_next_line(fd);
+	printf("11line: %s\n", str);
+	free(str);
+	str = get_next_line(fd);
+	printf("12line: %s\n", str);
+	free(str);
+	str = get_next_line(fd);
+	printf("13line: %s\n", str);
 	free(str);
 	close(fd);
 	printf("%d\n", fd);
