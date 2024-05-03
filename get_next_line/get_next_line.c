@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 17:13:28 by pvass             #+#    #+#             */
-/*   Updated: 2024/04/18 23:21:46 by pvass            ###   ########.fr       */
+/*   Updated: 2024/04/23 13:13:52 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,22 @@ static char	*read_string(int fd, char *str)
 	int		pos;
 
 	pos = -2;
-	if (read(fd, 0, 0) < 0)
-		return (free(str), NULL);
+	if (str == NULL)
+		return (NULL);
 	buffer = (char *)malloc(BUFFER_SIZE + 1);
 	if (buffer == NULL)
 		return (free(str), NULL);
-	if (str == NULL)
-		return (free(buffer), NULL);
 	buffer[0] = '\0';
 	while ((ft_strchr(str, '\n') == NULL) && pos != 0)
 	{
 		pos = read(fd, buffer, BUFFER_SIZE);
-		if (pos <= 0 && ft_strlen(str) == 0)
+		if (pos < 0 || (ft_strlen(str) == 0 && pos == 0))
 			return (free(str), free(buffer), NULL);
 		buffer[pos] = '\0';
 		new = ft_strjoin(str, buffer);
-		free (str);
+		if (new == NULL)
+			return (free(str), free(buffer), NULL);
+		free(str);
 		str = new;
 	}
 	return (free(buffer), str);
@@ -56,7 +56,7 @@ static char	*get_lin(char *str)
 		i++;
 	line = (char *)malloc(i + 1);
 	if (line == NULL)
-		return (NULL);
+		return (free(str), NULL);
 	while (j < i)
 	{
 		line[j] = str[j];
@@ -100,8 +100,6 @@ char	*get_next_line(int fd)
 	static int	count;
 	char		*string;
 
-	if (BUFFER_SIZE <= 0 || fd < 0)
-		return (count = 0, NULL);
 	if (count == 0)
 	{
 		r_str = (char *) malloc (1);
@@ -110,12 +108,14 @@ char	*get_next_line(int fd)
 		r_str[0] = '\0';
 		count++;
 	}
+	if (BUFFER_SIZE <= 0 || fd < 0)
+		return (count = 0, free (r_str), NULL);
 	r_str = read_string(fd, r_str);
 	if (r_str == NULL)
 		return (count = 0, NULL);
 	string = get_lin(r_str);
 	if (string == NULL)
-		return (count = 0, free(r_str), NULL);
+		return (count = 0, NULL);
 	r_str = left(r_str);
 	if (r_str == NULL)
 		return (count = 0, free(string), NULL);
