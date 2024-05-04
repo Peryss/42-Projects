@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:52:09 by pvass             #+#    #+#             */
-/*   Updated: 2024/05/03 20:12:41 by pvass            ###   ########.fr       */
+/*   Updated: 2024/05/04 15:50:19 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,8 @@ int main(int argc, char **argv)
 		if (ft_stacksize(a) != i)
 			free_all(a, b);
 	}
+	print_stack(a);
 	push_swap(&a, &b);
-	/* print_stack(a);
-	sa(&a);
-	printf("\n\n"); */
 	print_stack(a);
 	return (0);
 }
-

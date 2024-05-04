@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 13:16:19 by pvass             #+#    #+#             */
-/*   Updated: 2024/05/03 19:07:29 by pvass            ###   ########.fr       */
+/*   Updated: 2024/05/04 17:52:32 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,23 @@
 
 typedef struct s_stack
 {
-	int		nr;
-	struct s_stack *next;
+	int				nr;
+	struct s_stack	*next;
 }	t_stack;
+
+typedef struct s_move
+{
+	int				sum;
+	int				pos;
+	int				rrr;
+	int				rr;
+	int				ra;
+	int				rb;
+	int				rra;
+	int				rrb;
+	char			*name;
+	struct s_move	*next;
+}	t_move;
 
 t_stack	*ft_stacknew(int content);
 
@@ -34,6 +48,10 @@ int		ft_stacksize(t_stack *lst);
 void	ft_stackadd_top(t_stack **lst, t_stack *new);
 
 void	ft_stackadd_bot(t_stack **lst, t_stack *new);
+
+int		ft_stack_min(t_stack **b);
+
+int		ft_stack_max(t_stack **b);
 
 void	sa(t_stack **a);
 
@@ -64,5 +82,27 @@ void	free_all(t_stack *a, t_stack *b);
 void	print_stack(t_stack *a);
 
 void	push_swap(t_stack **a, t_stack **b);
+
+int		place_in_b(t_stack *temp, t_stack **b);
+
+t_move *rr_ra(t_stack *temp, t_stack *b, int pos_a);
+
+t_move *rr_rb(t_stack *temp, t_stack *b, int pos_a);
+
+t_move *rr_rra(t_stack *temp, t_stack *b, int pos_a);
+
+t_move *rr_rrb(t_stack *temp, t_stack *b, int pos_a);
+
+void	ft_moveadd_top(t_move **lst, t_move *new);
+
+t_move	*rrr_ra(t_stack *temp, t_stack *b, int pos_a);
+
+t_move	*rrr_rb(t_stack *temp, t_stack *b, int pos_a);
+
+t_move	*rrr_rra(t_stack *temp, t_stack *b, int pos_a);
+
+t_move	*rrr_rrb(t_stack *temp, t_stack *b, int pos_a);
+
+int		ft_abs(int x);
 
 #endif

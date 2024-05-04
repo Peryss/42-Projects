@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 13:43:24 by pvass             #+#    #+#             */
-/*   Updated: 2024/05/03 18:19:26 by pvass            ###   ########.fr       */
+/*   Updated: 2024/05/04 11:50:36 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,36 @@ t_stack	*ft_stacknew(int content)
 	new -> nr = content;
 	new -> next = NULL;
 	return (new);
+}
+
+int	ft_stack_min(t_stack **b)
+{
+	t_stack *temp;
+	int		min;
+	
+	temp = *b;
+	min = temp -> nr;
+	while (temp != NULL)
+	{
+		if(temp -> nr < min)
+			min = temp -> nr;
+		temp = temp -> next;
+	}
+	return (min);
+}
+
+int	ft_stack_max(t_stack **b)
+{
+	t_stack *temp;
+	int		max;
+	
+	temp = *b;
+	max = temp -> nr;
+	while (temp != NULL)
+	{
+		if(temp -> nr > max)
+			max = temp -> nr;
+		temp = temp -> next;
+	}
+	return (max);
 }
