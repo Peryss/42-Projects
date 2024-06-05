@@ -16,12 +16,11 @@ void	fract_init(t_fractal *fractal)
 {
 	fractal->x = 0;
 	fractal->y = 0;
-	fractal->zoom = 250;
-	fractal->color = 0xFFFF00;
+	fractal->zoom = 300;
+	fractal->color = 228;
 	fractal->max_iterations = 30;
-	fractal->offset_x = -1.6;
-	fractal->offset_y = -1.1;
-	fractal->color = 1111;
+	fractal->offset_x = -1.21;
+	fractal->offset_y = -1.21;
 	fractal->mlx = mlx_init();
 	fractal->window = mlx_new_window(fractal->mlx, SIZE, SIZE, "Fract-ol");
 	fractal->image = mlx_new_image(fractal->mlx, SIZE, SIZE);

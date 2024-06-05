@@ -23,21 +23,22 @@ void	calc_mandel(t_fractal *fractal)
 	fractal->zy = 0;
 	fractal->cx = (fractal->x / fractal->zoom) + fractal->offset_x;
 	fractal->cy = (fractal->y / fractal->zoom) + fractal->offset_y;
-	while (++i < fractal->max_iterations)
+	while (i < fractal->max_iterations)
 	{
 		temp = fractal->zx * fractal->zx - fractal->zy * 
 				fractal->zy + fractal->cx;
 		fractal->zy = 2. * fractal->zx * fractal->zy + fractal->cy;
 		fractal->zx = temp;
-		if (fractal->zx * fractal->zx + fractal->zy * fractal->zy >= 
-				__DBL_MAX__)
+		if (fractal->zx * fractal->zx + 
+			fractal->zy * fractal->zy >= __DBL_MAX__)
 			break ;
+		i++;
 	}
 	if (i == fractal->max_iterations)
 		f_mlx_pixel_put(fractal, fractal->x, fractal->y, 0x000000);
 	else
-		f_mlx_pixel_put(fractal, fractal->x, fractal->y, (fractal->color
-				* i));
+		f_mlx_pixel_put(fractal, fractal->x, fractal->y,
+			(fractal->color * i) % 255);
 }
 
 void	draw_mandel(t_fractal *fractal)
@@ -56,6 +57,33 @@ void	draw_mandel(t_fractal *fractal)
 	}
 }
 
+void	calc_julia(t_fractal *fractal)
+{
+	int		i;
+	double	temp;
+	
+	i = 0;
+	fractal->name = "julia";
+	fractal->zx = (fractal->x / fractal->zoom) + fractal->offset_x;
+	fractal->zy = (fractal->y / fractal->zoom) + fractal->offset_y;
+	while (i < fractal->max_iterations)
+	{
+		temp = fractal->zx;
+		fractal->zx = fractal->zx * fractal->zx - 
+			fractal->zy * fractal->zy + fractal->cx;
+		fractal->zy = 2 * fractal->zy * temp + fractal->cy;
+		if (fractal->zx * fractal->zx + 
+			fractal->zy * fractal->zy >= __DBL_MAX__)
+			break ;
+		i++;
+	}
+	if (i == fractal->max_iterations)
+		f_mlx_pixel_put(fractal, fractal->x, fractal->y, 0x000000);
+	else
+		f_mlx_pixel_put(fractal, fractal->x, fractal->y, 
+			(fractal->color * i) % 255);
+}
+
 void	draw_julia(t_fractal *fractal)
 {
 	fractal->x = 0;
@@ -65,7 +93,7 @@ void	draw_julia(t_fractal *fractal)
 		fractal->y = 0;
 		while (fractal->y < SIZE)
 		{
-			calc_mandel(fractal);
+			calc_julia(fractal);
 			fractal->y++;
 		}
 		fractal->x++;

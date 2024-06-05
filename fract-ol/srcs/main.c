@@ -12,9 +12,7 @@
 
 #include "../include/fractal.h"
 
-#include <mlx.h>
-
-typedef struct	s_data {
+/*typedef struct	s_data {
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -28,7 +26,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
-}
+}*/
 
 void	f_mlx_pixel_put(t_fractal *data, int x, int y, int color)
 {
@@ -38,17 +36,17 @@ void	f_mlx_pixel_put(t_fractal *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-typedef struct	s_vars {
+/*typedef struct	s_vars {
 	void	*mlx;
 	void	*win;
-}				t_vars;
+}				t_vars;*/
 
-int	close_win(int keycode, t_vars *vars)
+/*int	close_win(int keycode, t_vars *vars)
 {
 	(void)keycode;
 	mlx_destroy_window(vars->mlx, vars->win);
 	return (0);
-}
+}*/
 
 /* int	main(void)
 {
@@ -65,9 +63,12 @@ int	main(int argc, char **argv)
 {
 	t_fractal	fractal;
 	
-	if (argc != 2)
-		return (ft_putendl_fd("Wrong input!", 1), 0);
+	if (argc < 2)
+		return (ft_putendl_fd(
+			"Wrong input! Choose one of the models: mandel, julia", 1), 1);
 	fract_init(&fractal);
+	if (wrong_input(argc, argv, &fractal) == 1)
+		return (0);
 	draw_fractal(&fractal, argv[1]);
 	mlx_put_image_to_window(fractal.mlx, fractal.window, fractal.image, 0, 0);
 	mlx_loop(fractal.mlx);

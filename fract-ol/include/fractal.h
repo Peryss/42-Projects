@@ -50,4 +50,10 @@ void	f_mlx_pixel_put(t_fractal *data, int x, int y, int color);
 
 void	draw_fractal(t_fractal *fractal, char *name);
 
+int		wrong_input(int argc, char **argv, t_fractal *fractal);
+
+int		wrong_for_julia(char *str);
+
+double	atod(char *str);
+
 #endif
