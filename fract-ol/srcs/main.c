@@ -6,70 +6,94 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 17:22:46 by pvass             #+#    #+#             */
-/*   Updated: 2024/06/02 17:25:56 by pvass            ###   ########.fr       */
+/*   Updated: 2024/06/11 18:59:53 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fractal.h"
 
-/*typedef struct	s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
-
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void	f_mlx_pixel_put(t_fractal *fractal, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}*/
-
-void	f_mlx_pixel_put(t_fractal *data, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = data->pointer_to_image + (y * data->size_line + x * (data->bits_per_pixel / 8));
+	dst = fractal->pointer_to_image + (y * fractal->size_line + x * (fractal->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
 }
 
-/*typedef struct	s_vars {
-	void	*mlx;
-	void	*win;
-}				t_vars;*/
-
-/*int	close_win(int keycode, t_vars *vars)
+int	exit_program (t_fractal *fractal)
 {
-	(void)keycode;
-	mlx_destroy_window(vars->mlx, vars->win);
+	mlx_destroy_image(fractal->mlx, fractal->image);
+	mlx_destroy_window(fractal->mlx, fractal->window);
+	mlx_destroy_display(fractal->mlx);
+	free(fractal->mlx);
+	free(fractal);
+	exit(1);
 	return (0);
-}*/
+}
 
-/* int	main(void)
+int	key_hook(int keycode, t_fractal *fractal)
 {
-	t_vars	vars;
+	if (keycode == ESC)
+		exit_program(fractal);
+	if (keycode == RIGHT)
+		fractal->offset_x += 30 / fractal->zoom;
+	if (keycode == LEFT)
+		fractal->offset_x -= 30 / fractal->zoom;
+	if (keycode == UP)
+		fractal->offset_y += 30 / fractal->zoom;
+	if (keycode == DOWN)
+		fractal->offset_y -= 30 / fractal->zoom;
+	if (keycode == W && ft_strncmp(fractal->name, "julia", 5) == 0)
+		fractal->cx += 0.03;
+	if (keycode == S && ft_strncmp(fractal->name, "julia", 5) == 0)
+		fractal->cx -= 0.03;
+	if (keycode == A && ft_strncmp(fractal->name, "julia", 5) == 0)
+		fractal->cy += 0.03;
+	if (keycode == D && ft_strncmp(fractal->name, "julia", 5) == 0)
+		fractal->cy -= 0.03;
+	draw_fractal(fractal, fractal->name);
+	return (0);
+}
 
-	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "Hello world!");
-	mlx_hook(vars.win, 2, 1L<<0, close_win, &vars);
-	mlx_loop_hook(vars.win, )
-	mlx_loop(vars.mlx);
-} */
+int mouse_hook(int keycode, int x, int y, t_fractal *fractal)
+{
+	if (keycode == M_UP)
+	{
+		fractal->offset_x = (fractal->offset_x + x / fractal->zoom)
+		 	- (x / (fractal->zoom * 1.2));
+		fractal->offset_y = (fractal->offset_y + y / fractal->zoom)
+			- (y / (fractal->zoom * 1.2));
+		fractal->zoom *= 1.2;
+	}
+	if (keycode == M_DOWN)
+	{
+		fractal->offset_x = (fractal->offset_x + x / fractal->zoom)
+			- (x / (fractal->zoom / 1.2));
+		fractal->offset_y = (fractal->offset_y + y / fractal->zoom)
+			- (y / (fractal->zoom / 1.2));
+		fractal->zoom /= 1.2;	
+	}
+	draw_fractal(fractal, fractal->name);
+	return(0);
+}
 
 int	main(int argc, char **argv)
 {
-	t_fractal	fractal;
+	t_fractal	*fractal;
 	
 	if (argc < 2)
 		return (ft_putendl_fd(
-			"Wrong input! Choose one of the models: mandel, julia", 1), 1);
-	fract_init(&fractal);
-	if (wrong_input(argc, argv, &fractal) == 1)
-		return (0);
-	draw_fractal(&fractal, argv[1]);
-	mlx_put_image_to_window(fractal.mlx, fractal.window, fractal.image, 0, 0);
-	mlx_loop(fractal.mlx);
+			"Wrong input! Choose one of the models: mandel, julia", 1), 0);
+	fractal = malloc (sizeof(t_fractal));
+	if(fractal == NULL)
+		return (ft_putendl_fd("Malloc failed\n", 1), 0);
+	if (wrong_input(argc, argv, fractal) == 1)
+		return (free(fractal), 0);
+	if(fract_init(fractal) == NULL)
+		return (free(fractal), ft_putendl_fd("Mlx failed\n", 1), 0);
+	draw_fractal(fractal, argv[1]);
+	mlx_key_hook(fractal->window, key_hook, fractal);
+	mlx_mouse_hook(fractal->window, mouse_hook, fractal);
+	mlx_hook(fractal->window, 17, 0L, exit_program, fractal);
+	mlx_loop(fractal->mlx);
 }

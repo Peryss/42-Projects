@@ -6,12 +6,12 @@
 #    By: pvass <pvass@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/28 14:01:44 by pvass             #+#    #+#              #
-#    Updated: 2024/06/02 15:03:48 by pvass            ###   ########.fr        #
+#    Updated: 2024/06/11 15:46:38 by pvass            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			= cc
-CFLAGS		= -Wall -Werror -Wextra
+CFLAGS		= -Wall -Werror -Wextra -g
 LIBFT_PATH	= include/libft
 MLX_PATH	= include/minilibx-linux
 

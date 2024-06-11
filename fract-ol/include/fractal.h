@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:49:55 by pvass             #+#    #+#             */
-/*   Updated: 2024/06/02 17:49:39 by pvass            ###   ########.fr       */
+/*   Updated: 2024/06/11 19:03:02 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,18 @@
 # include <math.h>
 
 # define SIZE	700
+
+# define ESC	65307
+# define M_UP	4
+# define M_DOWN 5
+# define LEFT	65361
+# define RIGHT	65363
+# define UP		65364
+# define DOWN	65362
+# define W		119
+# define S		115
+# define A		97
+# define D		100
 
 typedef struct s_fractal
 {
@@ -34,7 +46,7 @@ typedef struct s_fractal
 	double	zy;
 	double	cx;
 	double	cy;
-	int		color;
+	long	color;
 	double	offset_x;
 	double	offset_y;
 	double	zoom;
@@ -44,7 +56,7 @@ typedef struct s_fractal
 
 /*Initialize*/
 
-void		fract_init(t_fractal *fractal);
+t_fractal	*fract_init(t_fractal *fractal);
 
 void	f_mlx_pixel_put(t_fractal *data, int x, int y, int color);
 
@@ -55,5 +67,7 @@ int		wrong_input(int argc, char **argv, t_fractal *fractal);
 int		wrong_for_julia(char *str);
 
 double	atod(char *str);
+
+int		exit_program (t_fractal *fractal);
 
 #endif
