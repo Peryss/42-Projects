@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:49:55 by pvass             #+#    #+#             */
-/*   Updated: 2024/06/12 16:39:07 by pvass            ###   ########.fr       */
+/*   Updated: 2024/06/13 17:31:44 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FRACTAL_H
 
 # include "libft/libft.h"
-# include "minilibx-linux/mlx.h"
+# include "mlx.h"
 # include <math.h>
 
 # define SIZE	700
