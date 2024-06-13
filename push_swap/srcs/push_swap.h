@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 13:16:19 by pvass             #+#    #+#             */
-/*   Updated: 2024/05/25 14:36:16 by pvass            ###   ########.fr       */
+/*   Updated: 2024/06/13 19:01:35 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,8 @@ void	right_order(t_stack **b);
 void	sort3(t_stack **b);
 
 int		sorted(t_stack **a, t_stack **b);
+
+int		check_alphhh(char *str);
 
 /* void	print_stack(t_stack *a); */
 

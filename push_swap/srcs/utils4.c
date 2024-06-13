@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 09:48:35 by pvass             #+#    #+#             */
-/*   Updated: 2024/05/25 14:36:23 by pvass            ###   ########.fr       */
+/*   Updated: 2024/06/13 19:04:38 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,20 @@ int	sorted(t_stack **a, t_stack **b)
 	return (1);
 }
 
-/* void	print_stack(t_stack *a)
+int	check_alphhh(char *str)
 {
-	while (a != NULL)
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
 	{
-		ft_printf("%d\n", a->nr);
-		a = a->next;
+		if ((str[i] < '0' || str[i] > '9') && str[i] != '+'
+			&& str[i] != '-' && str[i] != ' ')
+			return (1);
+		i++;
 	}
-} */
+	return (0);
+}
 
 static void	sort3a(t_stack **a)
 {
