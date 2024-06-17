@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 11:38:35 by pvass             #+#    #+#             */
-/*   Updated: 2024/06/13 19:02:43 by pvass            ###   ########.fr       */
+/*   Updated: 2024/06/16 13:27:00 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ t_stack	*check_input(char *str)
 	tab = ft_split(str, ' ');
 	if (tab == NULL || ft_strlen(str) == 0)
 		return (NULL);
-	printf("%d\n", check_alphhh(str) == 1);
 	if (check_size(tab) == 1 || check_alphhh(str) == 1)
 		return (free_tab(tab), NULL);
 	i = 0;
