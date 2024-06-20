@@ -18,10 +18,16 @@
 # include <sys/wait.h>
 #include <sys/types.h>
 
+# define STDIN 0
+# define STDOUT 1
+# define STDERR 2
+
 typedef struct s_all
 {
-	int	in_fd;
-	int out_fd;
+	int		stdin_copy;
+	int		stdout_copy;
 }	t_all;
+
+
 
 #endif

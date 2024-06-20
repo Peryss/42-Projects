@@ -106,9 +106,9 @@ char **path(char **env)
 {
 	char	*path_long;
 	char	**paths;
-	int		i;
+	//int		i;
 
-	i = 0;
+	//i = 0;
 	paths = NULL;
 	path_long = get_paths(env);
 	if (path_long == NULL)
@@ -171,100 +171,130 @@ char *comm(char **env, char *cmd)
 	return (free_all(full_paths, get_tab_size(full_paths)), NULL);
 }
 
-void	do_command(char *command, char **env)
+void	do_command(char *command, char **env, int stdout_copy)
 {
 	char *cmd_path;
 	char **newargv;
 
 	cmd_path = comm(env, command);
-	//cmd_path = "/usr/bin/cat";
 	if (cmd_path == NULL)
 	{
-		ft_printf("pipex: command not found: %s\n", command);
+		dup2(stdout_copy, 1);
+		close(stdout_copy);
+		ft_putstr_fd("./pipex: command not found: ", 2);
+		ft_putendl_fd(command, 2);
 		return (exit(0));
 	}
 	newargv = ft_split(command, ' ');
 	if (newargv == NULL)
 	{
-		ft_printf("pipex: command not found: %s\n", command);
+		dup2(stdout_copy, 1);
+		close(stdout_copy);
+		ft_putendl_fd("Malloc failed", 2);
 		return (free(cmd_path), exit(0));
 	}
 	free(newargv[0]);
 	newargv[0] = cmd_path;
-
-	/* free_all(newargv, get_tab_size(newargv));
-	exit(0); */
-	
+	close(stdout_copy);
 	if (execve(cmd_path, newargv, env) == -1)
 	{
-		//ft_printf("pipex: command not found: %s\n", command);
 		free_all(newargv, get_tab_size(newargv));
-		//free(cmd_path);
 		exit (0);
 	}
 }
 
-void create_pipe(int *p, char *command, char **env)
+void	first_cmd(int argc, char ** argv, char **env, int stdout_copy)
 {
-	pid_t	pipe_id;
-	int		pip[2];
-	(void) p;
-	//int		status;
-	
-	if (pipe(pip) == -1)
-		exit (0);
-	pipe_id = fork();
-	if (pipe_id == -1)
-		exit (0);
-	if (pipe_id == 0)
+	int		in_fd;
+	int		p[2];
+	pid_t	p_id;
+
+	(void)argc;
+	in_fd = open(argv[1], O_RDONLY);
+	dup2 (in_fd, 0);
+	close (in_fd);
+	pipe(p);
+	p_id = fork();
+	if (p_id == 0)
 	{
-		close(pip[0]);
-		dup2(pip[1], 1);
-		do_command(command, env);
+		close(p[0]);
+		dup2(p[1], 1);
+		close(p[1]);
+		do_command(argv[2], env, stdout_copy);
 	}
 	else
 	{
-		close(pip[1]);
-		dup2(pip[0], 0);
-		waitpid(pipe_id, NULL, 0);
+		close(p[1]);
+		dup2(p[0],0);
+		close(p[0]);
+		waitpid(p_id, NULL, 0);
 	}
 }
 
-void solve(int *p, int argc, char **env, char **argv)
+void	mid_cmd(int i, char **argv, char **env, int stdout_copy)
 {
-	int		i;
-	
-	i = 2;
-	while (i < argc - 2)
+	int p[2];
+	pid_t p_id;
+
+	pipe(p);
+	p_id = fork();
+	if (p_id == 0)
 	{
-		create_pipe(p, argv[i], env);
-		//close(p[0]);
-		i++;
+		close(p[0]);
+		dup2(p[1], 1);
+		close(p[1]);
+		do_command(argv[i], env, stdout_copy);
 	}
-	//close(p[1]);
-	//close(p[0]);
+	else
+	{
+		close(p[1]);
+		dup2(p[0],0);
+		close(p[0]);
+		waitpid(p_id, NULL, 0);
+	}
 }
 
-/*valgrind --trace-children=yes --track-fds=yes --leak-check=full --show-leak-kinds=all ./pipex file1 "cat" cat file2*/
-
-int	main(int argc, char **argv, char **env)
+void	last_cmd(int argc, char **argv, char **env, int stdout_copy)
 {
-	int	p[2];
+	int out_fd;
+	int p[2];
+	pid_t p_id;
 
-	if (argc < 5)
-		return (ft_putendl_fd("./pipex file1 cmd1 cmd2 ... cmdn file2", 1), 0);
-	p[1] = open(argv[1], O_RDONLY, 0777);
-	if (p[1]== -1)
-		return (ft_putendl_fd("Error", 2), 0);
-	p[0] = open(argv[argc - 1], O_WRONLY, 0777);
-	if (p[0] == -1)
-		return (ft_putendl_fd("Error", 2), 0);
-	if(dup2(p[1], 0) == -1)
-		exit(0);
-	solve (p, argc, env, argv);
-	if(dup2(p[0], 1) == -1)
-		exit(0);
-	//close(p[1]);
-	do_command(argv[argc - 2], env);
-	return (0);
+	out_fd = open(argv[argc-1], O_WRONLY);
+	dup2(out_fd, 1);
+	close(out_fd);
+	pipe(p);
+	p_id = fork();
+	if (p_id == 0)
+	{
+		close(p[0]);
+		close(p[1]);
+		do_command(argv[3], env, stdout_copy);
+	}
+	else
+	{
+		close(p[0]);
+		close(p[1]);
+		waitpid(p_id, NULL, 0);
+	}
+}
+
+int main (int argc, char **argv, char **env)
+{
+	int	i;
+	int	stdout_copy;
+
+	if (argc >= 5)
+	{
+		stdout_copy = dup(1);
+		first_cmd(argc, argv, env, stdout_copy);
+		i = 3;
+		while (i < argc - 2)
+		{
+			mid_cmd(i, argv, env, stdout_copy);
+			i++;
+		}
+		last_cmd(argc, argv, env, stdout_copy);
+	}
+	close(stdout_copy);
 }
