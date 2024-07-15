@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/15 12:20:47 by pvass             #+#    #+#             */
-/*   Updated: 2024/04/16 16:41:58 by pvass            ###   ########.fr       */
+/*   Created: 2024/04/18 16:37:06 by pvass             #+#    #+#             */
+/*   Updated: 2024/04/18 19:19:10 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-# include <stdint.h>
-# include "libft.h"
-# include "get_next_line.h"
+# include <stdio.h>
+# include <fcntl.h>
+# include <stdlib.h>
+# include <unistd.h>
 
-/*printf*/
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
-int		ft_putpointer(uintptr_t ptr);
+size_t	ft_strlen(const char *str);
 
-int		ft_putunsigned(unsigned int nbr);
+char	*ft_strchr(const char *str, int c);
 
-int		ft_hex(unsigned int nbr, char c);
+char	*ft_strjoin(char const *s1, char const *s2);
 
-int		ft_putnbr2(int nbr);
-
-int		ft_putstr2(char *ptr);
-
-int		ft_printf(const char *format, ...);
+char	*get_next_line(int fd);
 
 #endif

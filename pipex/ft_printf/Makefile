@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRC			= ft_countres.c ft_hexupdown.c ft_putpointer.c ft_putunsigned.c ft_printf.c
+SRC			= ft_countres.c ft_hexupdown.c ft_putpointer.c ft_putunsigned.c ft_printf.c get_next_line.c
 
 SRCS		= ${addprefix ${PRE}, ${SRC}}
 
