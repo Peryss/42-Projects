@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 12:49:04 by pvass             #+#    #+#             */
-/*   Updated: 2024/10/25 14:59:47 by pvass            ###   ########.fr       */
+/*   Updated: 2024/10/28 16:51:28 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ int	main(int argc, char ** argv)
 	init_program(&program, philos);
 	init_forks(forks, argv);
 	init_philosophers(&program, philos, forks, argv);
+	create_threads(&program, forks);
 	return (0);
 }

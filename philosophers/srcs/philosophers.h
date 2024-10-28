@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 12:49:59 by pvass             #+#    #+#             */
-/*   Updated: 2024/10/25 15:10:34 by pvass            ###   ########.fr       */
+/*   Updated: 2024/10/28 16:01:36 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@
 # include <sys/time.h>
 
 # define PHILO_MAX 200
+
+typedef enum s_error
+{
+	THREAD_ERROR = 2,
+	T_JOIN_ERROR,
+}	t_error;
 
 typedef struct s_philo
 {
@@ -67,4 +73,7 @@ void	init_program(t_program *program, t_philo *philos);
 void	init_forks(pthread_mutex_t *forks, char **argv);
 void	init_philosophers(t_program *program, t_philo *philos, pthread_mutex_t *forks, char **argv);
 
+void	print_msg(char *msg, t_philo *philos);
+void	create_threads(t_program *program, pthread_mutex_t *forks);
+void	*routine(void *content);
 # endif

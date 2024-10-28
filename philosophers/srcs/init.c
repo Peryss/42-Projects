@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:15:04 by pvass             #+#    #+#             */
-/*   Updated: 2024/10/25 14:58:17 by pvass            ###   ########.fr       */
+/*   Updated: 2024/10/28 17:17:21 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	init_philosophers(t_program *program, t_philo *philos, pthread_mutex_t *for
 		philos[i].start_time = get_time();
 		philos[i].dead = &program->dead_flag;
 		philos[i].r_fork = &forks[i];
-		if (i == ft_atoi(argv[1]))
+		if (i == (ft_atoi(argv[1]) - 1))
 			philos[i].l_fork = &forks[0];
 		else
 			philos[i].l_fork = &forks[i + 1];
