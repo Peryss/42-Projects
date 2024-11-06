@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 12:49:59 by pvass             #+#    #+#             */
-/*   Updated: 2024/10/28 16:01:36 by pvass            ###   ########.fr       */
+/*   Updated: 2024/11/05 17:34:13 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,23 @@ typedef struct s_philo
 	int				num_of_philos;
 	int				num_times_to_eat;
 	int				*dead;
+	int				*run;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	*write_lock;
 	pthread_mutex_t	*dead_lock;
 	pthread_mutex_t	*meal_lock;
+	pthread_mutex_t *run_lock;
 }	t_philo;
 
 typedef struct s_program
 {
 	int				dead_flag;
+	int				run_flag;
 	pthread_mutex_t	dead_lock;
 	pthread_mutex_t	meal_lock;
 	pthread_mutex_t	write_lock;
+	pthread_mutex_t	run_lock;
 	t_philo			*philos;
 }	t_program;
 
