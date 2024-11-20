@@ -80,4 +80,5 @@ void	init_philosophers(t_program *program, t_philo *philos, pthread_mutex_t *for
 void	print_msg(char *msg, t_philo *philos);
 void	create_threads(t_program *program, pthread_mutex_t *forks);
 void	*routine(void *content);
+void	check_safe_exit_thread(t_philo *philo);
 # endif

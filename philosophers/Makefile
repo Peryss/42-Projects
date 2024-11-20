@@ -24,7 +24,7 @@ OBJ			= ${SRCS:.c=.o}
 
 INCLUDE		= ./srcs/philosophers.h
 
-NAME		= philosophers
+NAME		= philo
 
 CC			= cc
 

@@ -57,11 +57,11 @@ int		finished(t_philo *philos)
 		{
 			print_msg("died", &philos[i]);
 			pthread_mutex_lock(philos->run_lock);
-			*philos[i].run = 0;
-			pthread_mutex_unlock(philos->run_lock);
 			pthread_mutex_lock(philos[i].dead_lock);
 			*philos[i].dead = 1;
+			*philos[i].run = 0;
 			pthread_mutex_unlock(philos[i].dead_lock);
+			pthread_mutex_unlock(philos->run_lock);
 			return (1);
 		}
 		i++;
@@ -69,7 +69,7 @@ int		finished(t_philo *philos)
 	if (all_ate_enough(&philos[0]) == 1)
 	{
 		pthread_mutex_lock(philos->run_lock);
-		*philos[i].run = 0;
+		*philos[0].run = 0;
 		pthread_mutex_unlock(philos->run_lock);
 		return (1);
 	}
@@ -86,7 +86,7 @@ void	*observe(void *pointer)
 		if (finished(philos) == 1)
 			break;
 	}
-	printf("observe end, run:{%d}, dead{%d}\n", *philos->run,*philos->dead);
+	//printf("observe end, run:{%d}, dead{%d}\n", *philos->run,*philos->dead);
 	return (pointer);
 }
 
@@ -111,13 +111,15 @@ void	safe_exit(char *str, t_program *program, pthread_mutex_t *forks, int error)
 void	create_threads(t_program *program, pthread_mutex_t *forks)
 {
 	pthread_t	observer;
+	int			num_philos;
 	int			i;
 	
 	(void)forks;
+	num_philos = program->philos[0].num_of_philos;
 	if (pthread_create(&observer, NULL, observe, program->philos) != 0)
 		return (safe_exit("Thread create error", program, forks, 1));
 	i = 0;
-	while (i < program->philos[0].num_of_philos)
+	while (i < num_philos)
 	{
 		if (pthread_create(&program->philos[i].thread, NULL, routine, &program->philos[i]) != 0)
 			return (safe_exit("Thread create error", program, forks, 1));
@@ -126,7 +128,7 @@ void	create_threads(t_program *program, pthread_mutex_t *forks)
 	if (pthread_join(observer, NULL) != 0)
 		return (safe_exit("Thread join error", program, forks, 1));
 	i = 0;
-	while (i < program->philos[0].num_of_philos)
+	while (i < num_philos)
 	{
 		if (pthread_join(program->philos[i].thread, NULL) != 0)
 			return (safe_exit("Thread join error", program, forks, 1));
