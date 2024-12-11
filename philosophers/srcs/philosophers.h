@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 12:49:59 by pvass             #+#    #+#             */
-/*   Updated: 2024/11/05 17:34:13 by pvass            ###   ########.fr       */
+/*   Updated: 2024/12/11 19:41:42 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <sys/time.h>
-
-# define PHILO_MAX 200
 
 typedef enum s_error
 {
@@ -47,8 +45,8 @@ typedef struct s_philo
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	*write_lock;
 	pthread_mutex_t	*dead_lock;
-	pthread_mutex_t	*meal_lock;
-	pthread_mutex_t *run_lock;
+	pthread_mutex_t	meal_lock;
+	pthread_mutex_t	*run_lock;
 }	t_philo;
 
 typedef struct s_program
@@ -56,7 +54,6 @@ typedef struct s_program
 	int				dead_flag;
 	int				run_flag;
 	pthread_mutex_t	dead_lock;
-	pthread_mutex_t	meal_lock;
 	pthread_mutex_t	write_lock;
 	pthread_mutex_t	run_lock;
 	t_philo			*philos;
@@ -75,10 +72,22 @@ int		wrong_input(char *str);
 
 void	init_program(t_program *program, t_philo *philos);
 void	init_forks(pthread_mutex_t *forks, char **argv);
-void	init_philosophers(t_program *program, t_philo *philos, pthread_mutex_t *forks, char **argv);
+void	init_philosophers(t_program *program, t_philo *philos,
+			pthread_mutex_t *forks, char **argv);
 
 void	print_msg(char *msg, t_philo *philos);
-void	create_threads(t_program *program, pthread_mutex_t *forks);
+void	create_and_destroy_threads(t_program *program, pthread_mutex_t *forks);
 void	*routine(void *content);
 void	check_safe_exit_thread(t_philo *philo);
-# endif
+int		run_and_not_dead(t_philo *philo);
+void	p_sleep_nomsg(size_t time);
+void	set_to_finished(t_philo *philos, int i);
+void	*observe(void *pointer);
+int		finished(t_philo *philos);
+int		is_dead(t_philo *philos);
+int		all_ate_enough(t_philo *philos);
+void	safe_exit(char *str, t_program *program,
+			pthread_mutex_t *forks, int error);
+void	print_philo(t_philo *p);
+
+#endif

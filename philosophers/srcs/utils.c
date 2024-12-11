@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 13:54:30 by pvass             #+#    #+#             */
-/*   Updated: 2024/10/25 15:12:36 by pvass            ###   ########.fr       */
+/*   Updated: 2024/12/11 19:40:28 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ static char	*allo(int n)
 		i = 1;
 	if (n == -2147483648)
 	{
-		ptr = ft_calloc(12, 1);;
+		ptr = ft_calloc(12, 1);
 		if (ptr == NULL)
 			return (ptr);
 		ptr = ft_strncpy(ptr, "-2147483648", 12);
@@ -106,7 +106,7 @@ static char	*allo(int n)
 		n = n / 10;
 		i++;
 	}
-	ptr = ft_calloc(i+1, 1);
+	ptr = ft_calloc(i + 1, 1);
 	return (ptr);
 }
 

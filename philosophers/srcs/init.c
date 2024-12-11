@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:15:04 by pvass             #+#    #+#             */
-/*   Updated: 2024/11/05 17:35:55 by pvass            ###   ########.fr       */
+/*   Updated: 2024/12/11 19:38:32 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	init_program(t_program *program, t_philo *philos)
 	program->philos = philos;
 	pthread_mutex_init(&program->write_lock, NULL);
 	pthread_mutex_init(&program->dead_lock, NULL);
-	pthread_mutex_init(&program->meal_lock, NULL);
 	pthread_mutex_init(&program->run_lock, NULL);
 }
 
@@ -47,10 +46,11 @@ void	input_to_philos(t_philo *philos, char **argv)
 		philos->num_times_to_eat = -1;
 }
 
-void	init_philosophers(t_program *program, t_philo *philos, pthread_mutex_t *forks, char **argv)
+void	init_philosophers(t_program *program, t_philo *philos,
+		pthread_mutex_t *forks, char **argv)
 {
 	int	i;
-	
+
 	i = 0;
 	while (i < ft_atoi(argv[1]))
 	{
@@ -69,13 +69,13 @@ void	init_philosophers(t_program *program, t_philo *philos, pthread_mutex_t *for
 			philos[i].l_fork = &forks[i + 1];
 		philos[i].write_lock = &program->write_lock;
 		philos[i].dead_lock = &program->dead_lock;
-		philos[i].meal_lock = &program->meal_lock;
+		pthread_mutex_init(&philos[i].meal_lock, NULL);
 		philos[i].run_lock = &program->run_lock;
 		i++;
 	}
 }
 
-void	printf_philo(t_philo *p)
+void	print_philo(t_philo *p)
 {
 	printf("id:{%d}\n", p->id);
 	printf("eating:{%d}\n", p->eating);
