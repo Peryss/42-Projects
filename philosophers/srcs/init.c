@@ -6,20 +6,21 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:15:04 by pvass             #+#    #+#             */
-/*   Updated: 2024/12/11 19:38:32 by pvass            ###   ########.fr       */
+/*   Updated: 2024/12/12 13:37:45 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	init_forks(pthread_mutex_t *forks, char **argv)
+void	init_forks(t_program *program, pthread_mutex_t *forks, char **argv)
 {
 	int	i;
 
 	i = 0;
 	while (i < ft_atoi(argv[1]))
 	{
-		pthread_mutex_init(&forks[i], NULL);
+		if (pthread_mutex_init(&forks[i], NULL) != 0)
+			return (init_exit(program, forks, i, 0));
 		i++;
 	}
 }
@@ -28,10 +29,22 @@ void	init_program(t_program *program, t_philo *philos)
 {
 	program->dead_flag = 0;
 	program->run_flag = 1;
+	program->start_flag = 0;
 	program->philos = philos;
-	pthread_mutex_init(&program->write_lock, NULL);
-	pthread_mutex_init(&program->dead_lock, NULL);
-	pthread_mutex_init(&program->run_lock, NULL);
+	if (pthread_mutex_init(&program->write_lock, NULL) != 0)
+		return (write(2, "Mutex init error\n", 18), exit (4));
+	if (pthread_mutex_init(&program->dead_lock, NULL) != 0)
+		return (pthread_mutex_destroy(&program->write_lock),
+			write (2, "Mutex init error\n", 18), exit (4));
+	if (pthread_mutex_init(&program->run_lock, NULL) != 0)
+		return (pthread_mutex_destroy(&program->dead_lock),
+			pthread_mutex_destroy(&program->write_lock),
+			write (2, "Mutex init error\n", 18), exit (4));
+	if (pthread_mutex_init(&program->start_lock, NULL) != 0)
+		return (pthread_mutex_destroy(&program->dead_lock),
+			pthread_mutex_destroy(&program->write_lock),
+			pthread_mutex_destroy(&program->run_lock),
+			write (2, "Mutex init error\n", 18), exit (4));
 }
 
 void	input_to_philos(t_philo *philos, char **argv)
@@ -69,8 +82,10 @@ void	init_philosophers(t_program *program, t_philo *philos,
 			philos[i].l_fork = &forks[i + 1];
 		philos[i].write_lock = &program->write_lock;
 		philos[i].dead_lock = &program->dead_lock;
-		pthread_mutex_init(&philos[i].meal_lock, NULL);
+		if (pthread_mutex_init(&philos[i].meal_lock, NULL) != 0)
+			return (init_exit(program, forks, philos->num_of_philos, i));
 		philos[i].run_lock = &program->run_lock;
+		philos[i].start_lock = &program->start_lock;
 		i++;
 	}
 }

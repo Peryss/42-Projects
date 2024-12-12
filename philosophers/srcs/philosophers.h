@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 12:49:59 by pvass             #+#    #+#             */
-/*   Updated: 2024/12/11 19:41:42 by pvass            ###   ########.fr       */
+/*   Updated: 2024/12/12 13:25:02 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,6 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <sys/time.h>
-
-typedef enum s_error
-{
-	THREAD_ERROR = 2,
-	T_JOIN_ERROR,
-}	t_error;
 
 typedef struct s_philo
 {
@@ -47,15 +41,18 @@ typedef struct s_philo
 	pthread_mutex_t	*dead_lock;
 	pthread_mutex_t	meal_lock;
 	pthread_mutex_t	*run_lock;
+	pthread_mutex_t	*start_lock;
 }	t_philo;
 
 typedef struct s_program
 {
 	int				dead_flag;
 	int				run_flag;
+	int				start_flag;
 	pthread_mutex_t	dead_lock;
 	pthread_mutex_t	write_lock;
 	pthread_mutex_t	run_lock;
+	pthread_mutex_t	start_lock;
 	t_philo			*philos;
 }	t_program;
 
@@ -71,7 +68,7 @@ int		invalid_args(char **argv);
 int		wrong_input(char *str);
 
 void	init_program(t_program *program, t_philo *philos);
-void	init_forks(pthread_mutex_t *forks, char **argv);
+void	init_forks(t_program *program, pthread_mutex_t *forks, char **argv);
 void	init_philosophers(t_program *program, t_philo *philos,
 			pthread_mutex_t *forks, char **argv);
 
@@ -88,6 +85,7 @@ int		is_dead(t_philo *philos);
 int		all_ate_enough(t_philo *philos);
 void	safe_exit(char *str, t_program *program,
 			pthread_mutex_t *forks, int error);
+void	init_exit(t_program *program, pthread_mutex_t *forks, int fork, int m);
 void	print_philo(t_philo *p);
 
 #endif

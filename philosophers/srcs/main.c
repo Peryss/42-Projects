@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 12:49:04 by pvass             #+#    #+#             */
-/*   Updated: 2024/12/11 19:40:12 by pvass            ###   ########.fr       */
+/*   Updated: 2024/12/12 13:50:47 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char **argv)
 	if (invalid_args(argv) == 1)
 		return (1);
 	init_program(&program, philos);
-	init_forks(forks, argv);
+	init_forks(&program, forks, argv);
 	init_philosophers(&program, philos, forks, argv);
 	create_and_destroy_threads(&program, forks);
 	return (0);

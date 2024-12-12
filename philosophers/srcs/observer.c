@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 17:47:28 by pvass             #+#    #+#             */
-/*   Updated: 2024/12/11 19:44:52 by pvass            ###   ########.fr       */
+/*   Updated: 2024/12/12 13:44:47 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	all_ate_enough(t_philo *philos)
 
 	i = 0;
 	done = 0;
+	pthread_mutex_lock(philos->start_lock);
+	pthread_mutex_unlock(philos->start_lock);
 	if (philos[i].num_times_to_eat == -1)
 		return (0);
 	while (i < philos[0].num_of_philos)
