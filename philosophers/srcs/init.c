@@ -52,6 +52,7 @@ void	input_to_philos(t_philo *philos, char **argv)
 		philos->num_times_to_eat = -1;
 }
 
+
 void	init_philosophers(t_program *program, t_philo *philos,
 		pthread_mutex_t *forks, char **argv)
 {
