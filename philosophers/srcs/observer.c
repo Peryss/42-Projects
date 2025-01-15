@@ -49,12 +49,24 @@ int	is_dead(t_philo *philos)
 
 void	set_to_finished(t_philo *philos, int i)
 {
-	pthread_mutex_lock(philos->run_lock);
-	pthread_mutex_lock(philos->dead_lock);
-	*philos[i].dead = 1;
+	
+	pthread_mutex_lock(philos[i].run_lock);
+	//pthread_mutex_lock(philos[i].dead_lock);
+	//*philos[i].dead = 1;
 	*philos[i].run = 0;
-	pthread_mutex_unlock(philos->dead_lock);
-	pthread_mutex_unlock(philos->run_lock);
+	//printf("{%p, %p}\n", philos[i].run, philos[i].run_lock);
+	//pthread_mutex_unlock(philos[i].dead_lock);
+	pthread_mutex_unlock(philos[i].run_lock);
+}
+
+void	print_died(t_philo *philos)
+{
+	size_t	t;
+
+	pthread_mutex_lock(philos->write_lock);
+	t = get_time() - philos->start_time;
+	printf("%zu	%d	%s\n", t, philos->id + 1, "died");
+	pthread_mutex_unlock(philos->write_lock);
 }
 
 int	finished(t_philo *philos)
@@ -66,8 +78,8 @@ int	finished(t_philo *philos)
 	{
 		if (is_dead(&philos[i]) == 1)
 		{
-			print_msg("died", &philos[i]);
 			set_to_finished(philos, i);
+			print_died(&philos[i]);
 			return (1);
 		}
 		i++;

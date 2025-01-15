@@ -29,9 +29,9 @@ INCLUDE		= ./srcs/philosophers.h
 
 NAME		= philo
 
-CC			= cc
+CC			= gcc
 
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -g
 
 all:		${NAME}
 
@@ -50,6 +50,6 @@ fclean:		clean
 re:			fclean all
 
 thread:		${OBJ}
-				${CC} ${CFLAGS} -o ${NAME} ${OBJ} -fsanitize=thread -g -O1 -lpthread
+				${CC} ${CFLAGS} -o ${NAME} ${OBJ} # -fsanitize=thread -g -O1 -lpthread
 
 .PHONY:		all clean fclean re

@@ -20,6 +20,7 @@ void	init_forks(pthread_mutex_t *forks, char **argv)
 	while (i < ft_atoi(argv[1]))
 	{
 		pthread_mutex_init(&forks[i], NULL);
+		printf("f{%p}\n", &forks[i]);
 		i++;
 	}
 }
@@ -27,11 +28,16 @@ void	init_forks(pthread_mutex_t *forks, char **argv)
 void	init_program(t_program *program, t_philo *philos)
 {
 	program->dead_flag = 0;
+	printf("0{%p}\n", &program->dead_flag);
 	program->run_flag = 1;
+	printf("0{%p}\n", &program->dead_flag);
 	program->philos = philos;
 	pthread_mutex_init(&program->write_lock, NULL);
+	printf("1{%p}\n", &program->write_lock);
 	pthread_mutex_init(&program->dead_lock, NULL);
+	printf("1{%p}\n", &program->dead_lock);
 	pthread_mutex_init(&program->run_lock, NULL);
+	printf("1{%p}\n", &program->run_lock);
 }
 
 void	input_to_philos(t_philo *philos, char **argv)

@@ -18,9 +18,11 @@ void	safe_exit(char *str, t_program *program,
 	int	i;
 
 	i = 0;
+	pthread_mutex_lock(&program->write_lock);
 	if (str && error == 1)
 		write (2, str, ft_strlen(str));
-	program->philos->run = 0;
+	pthread_mutex_unlock(&program->write_lock);
+	//program->philos->run = 0;
 	pthread_mutex_destroy(&program->write_lock);
 	pthread_mutex_destroy(&program->dead_lock);
 	pthread_mutex_destroy(&program->run_lock);

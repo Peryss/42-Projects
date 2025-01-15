@@ -29,22 +29,24 @@ int	run_and_not_dead(t_philo *philo)
 	int	res;
 
 	res = 0;
+	(void) res;
+	(void) philo;
 	pthread_mutex_lock(philo->run_lock);
-	pthread_mutex_lock(philo->dead_lock);
-	if (*philo->run == 1 && *philo->dead == 0)
+	//pthread_mutex_lock(philo->dead_lock);
+	if (*philo->run == 1 /*&& *philo->dead == 0*/)
 		res = 1;
-	pthread_mutex_unlock(philo->dead_lock);
+	//pthread_mutex_unlock(philo->dead_lock);
 	pthread_mutex_unlock(philo->run_lock);
 	return (res);
 }
 
-void	check_safe_exit_thread(t_philo *philo)
+/*void	check_safe_exit_thread(t_philo *philo)
 {
 	if (run_and_not_dead(philo) == 0)
 		exit (0);
-}
+}*/
 
-int	first_meal(t_philo *philo)
+/*int	first_meal(t_philo *philo)
 {
 	int	res;
 
@@ -54,15 +56,23 @@ int	first_meal(t_philo *philo)
 		res = 1;
 	pthread_mutex_unlock(&philo->meal_lock);
 	return (res);
-}
+}*/
 
-void	p_sleep_nomsg(size_t time)
+void	p_sleep_nomsg(size_t time, t_philo *philo)
 {
 	size_t	start;
 
 	if (time == 0)
 		return ;
 	start = get_time();
-	while (get_time() - start < time)
+	while (get_time() - start < time && run_and_not_dead(philo) == 1)
 		usleep(100);
 }
+
+/*0{0x1ffeff59d0}
+0{0x1ffeff59d0}
+1{0x1ffeff5a00}
+1{0x1ffeff59d8}
+1{0x1ffeff5a28}
+f{0x1ffeff5a60}
+f{0x1ffeff5a88}*/
