@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:03:59 by pvass             #+#    #+#             */
-/*   Updated: 2024/12/11 19:39:32 by pvass            ###   ########.fr       */
+/*   Updated: 2025/01/15 16:45:09 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	invalid_args(char **argv)
 		return (write(2, "Invalid time to eat\n", 21), 1);
 	if (ft_atoi(argv[4]) < 1 || wrong_input(argv[4]) == 1)
 		return (write(2, "Invalid time to sleep\n", 23), 1);
-	if (argv[5] != NULL && (ft_atoi(argv[3]) < 1 || wrong_input(argv[3]) == 1))
-		return (write(2, "Invalid number of must eat\n", 21), 1);
+	if (argv[5] != NULL && (ft_atoi(argv[5]) < 1 || wrong_input(argv[5]) == 1))
+		return (write(2, "Invalid number of must eat\n", 28), 1);
 	return (0);
 }
