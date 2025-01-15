@@ -23,6 +23,8 @@ void	create_and_destroy_threads(t_program *program, pthread_mutex_t *forks)
 	if (pthread_create(&observer, NULL, observe, program->philos) != 0)
 		return (safe_exit("Thread create error", program, forks, 2));
 	i = 0;
+	(void) i;
+	(void) num_philos;
 	while (i < num_philos)
 	{
 		if (pthread_create(&program->philos[i].thread, NULL, routine,
@@ -40,6 +42,7 @@ void	create_and_destroy_threads(t_program *program, pthread_mutex_t *forks)
 		if (pthread_join(program->philos[i].thread, NULL) != 0)
 			return (safe_exit("Thread join error", program, forks, 3));
 		i++;
+		printf("ajajajajaaaa%d\n", i);
 	}
 	if (pthread_join(observer, NULL) != 0)
 		return (safe_exit("Thread join error", program, forks, 3));

@@ -77,7 +77,7 @@ void	create_and_destroy_threads(t_program *program, pthread_mutex_t *forks);
 void	*routine(void *content);
 void	check_safe_exit_thread(t_philo *philo);
 int		run_and_not_dead(t_philo *philo);
-void	p_sleep_nomsg(size_t time);
+void	p_sleep_nomsg(size_t time, t_philo *philo);
 void	set_to_finished(t_philo *philos, int i);
 void	*observe(void *pointer);
 int		finished(t_philo *philos);

@@ -19,8 +19,8 @@ void	init_forks(t_program *program, pthread_mutex_t *forks, char **argv)
 	i = 0;
 	while (i < ft_atoi(argv[1]))
 	{
-		if (pthread_mutex_init(&forks[i], NULL) != 0)
-			return (init_exit(program, forks, i, 0));
+		pthread_mutex_init(&forks[i], NULL);
+		printf("f{%p}\n", &forks[i]);
 		i++;
 	}
 }
@@ -28,23 +28,12 @@ void	init_forks(t_program *program, pthread_mutex_t *forks, char **argv)
 void	init_program(t_program *program, t_philo *philos)
 {
 	program->dead_flag = 0;
+	printf("0{%p}\n", &program->dead_flag);
 	program->run_flag = 1;
-	program->start_flag = 0;
 	program->philos = philos;
-	if (pthread_mutex_init(&program->write_lock, NULL) != 0)
-		return (write(2, "Mutex init error\n", 18), exit (4));
-	if (pthread_mutex_init(&program->dead_lock, NULL) != 0)
-		return (pthread_mutex_destroy(&program->write_lock),
-			write (2, "Mutex init error\n", 18), exit (4));
-	if (pthread_mutex_init(&program->run_lock, NULL) != 0)
-		return (pthread_mutex_destroy(&program->dead_lock),
-			pthread_mutex_destroy(&program->write_lock),
-			write (2, "Mutex init error\n", 18), exit (4));
-	if (pthread_mutex_init(&program->start_lock, NULL) != 0)
-		return (pthread_mutex_destroy(&program->dead_lock),
-			pthread_mutex_destroy(&program->write_lock),
-			pthread_mutex_destroy(&program->run_lock),
-			write (2, "Mutex init error\n", 18), exit (4));
+	pthread_mutex_init(&program->write_lock, NULL);
+	pthread_mutex_init(&program->dead_lock, NULL);
+	pthread_mutex_init(&program->run_lock, NULL);
 }
 
 void	input_to_philos(t_philo *philos, char **argv)
@@ -58,6 +47,7 @@ void	input_to_philos(t_philo *philos, char **argv)
 	else
 		philos->num_times_to_eat = -1;
 }
+
 
 void	init_philosophers(t_program *program, t_philo *philos,
 		pthread_mutex_t *forks, char **argv)
