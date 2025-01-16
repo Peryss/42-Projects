@@ -6,7 +6,7 @@
 #    By: pvass <pvass@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/16 12:44:51 by pvass             #+#    #+#              #
-#    Updated: 2024/12/11 17:57:19 by pvass            ###   ########.fr        #
+#    Updated: 2025/01/16 14:55:32 by pvass            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,9 +29,9 @@ INCLUDE		= ./srcs/philosophers.h
 
 NAME		= philo
 
-CC			= gcc
+CC			= cc
 
-CFLAGS		= -Wall -Wextra -Werror -g
+CFLAGS		= -Wall -Wextra -Werror
 
 all:		${NAME}
 

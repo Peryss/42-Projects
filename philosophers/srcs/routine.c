@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 15:35:48 by pvass             #+#    #+#             */
-/*   Updated: 2025/01/15 18:39:21 by pvass            ###   ########.fr       */
+/*   Updated: 2025/01/16 14:52:01 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,22 @@ void	p_sleep(t_philo *philo)
 void	p_think(t_philo *philo)
 {
 	print_msg("is thinking", philo);
+	if (philo->num_of_philos == 3 && philo->meals_eaten == 0)
+	{
+		p_sleep_nomsg(philo->time_to_eat * philo->id / 2, philo);
+	}
+	if (philo->num_of_philos == 3 && philo->meals_eaten > 0)
+	{
+		if (philo->time_to_eat + 2 > philo->time_to_sleep)
+			p_sleep_nomsg(philo->time_to_eat, philo);
+		print_msg("after first meal", philo);
+	}
 }
 
 t_philo	*p_eat_one(t_philo *philo)
 {
+	if (philo->num_of_philos % 2 == 0 && philo->meals_eaten == 0)
+		p_sleep_nomsg (philo->time_to_eat / 2, philo);
 	pthread_mutex_lock(philo->r_fork);
 	print_msg("has taken a fork", philo);
 	if (philo->num_of_philos == 1)
@@ -83,7 +95,8 @@ void	*routine(void *content)
 	while (run_and_not_dead(philo) == 1)
 	{
 		p_think(philo);
-		if (philo->num_of_philos % 2 == 1 && philo->meals_eaten == 0)
+		if (philo->num_of_philos % 2 == 1 && philo->meals_eaten == 0
+			&& philo->num_of_philos != 3)
 		{
 			if (philo->id % 2 == 1)
 				p_sleep_nomsg(philo->time_to_eat, philo);
@@ -92,7 +105,7 @@ void	*routine(void *content)
 				p_sleep_nomsg((philo->time_to_eat / ((philo->num_of_philos - 1)
 							/ 2)) * philo->id / 2, philo);
 		}
-		if (philo->id % 2 == 0 && philo->num_of_philos != 3)
+		if (philo->id % 2 == 0)
 			philo = p_eat_one(philo);
 		else
 			philo = p_eat_two(philo);
