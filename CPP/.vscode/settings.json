@@ -8,6 +8,7 @@
 		"cstdio": "cpp",
 		"cstdlib": "cpp",
 		"cstring": "cpp",
+		"ctime": "cpp",
 		"cwchar": "cpp",
 		"cwctype": "cpp",
 		"array": "cpp",
@@ -36,6 +37,7 @@
 		"type_traits": "cpp",
 		"utility": "cpp",
 		"initializer_list": "cpp",
+		"iomanip": "cpp",
 		"iosfwd": "cpp",
 		"iostream": "cpp",
 		"istream": "cpp",
@@ -48,8 +50,6 @@
 		"stdexcept": "cpp",
 		"streambuf": "cpp",
 		"cinttypes": "cpp",
-		"typeinfo": "cpp",
-		"iomanip": "cpp",
-		"ctime": "cpp"
+		"typeinfo": "cpp"
 	}
 }

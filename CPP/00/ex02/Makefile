@@ -1,8 +1,8 @@
-SRCS        = main.cpp Contact.cpp PhoneBook.cpp utils.cpp
+SRCS        = Account.cpp tests.cpp
 
 OBJ         = ${SRCS:.cpp=.o}
 
-NAME        = phonebook
+NAME        = account
 
 CPP         = c++
 
