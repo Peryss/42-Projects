@@ -23,13 +23,15 @@ OBJ_FILES	= $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
 
 LIBFT		= $(LIBFT_PATH)/libft.a
 
+MLX_DIR 	= ./minilibx-linux
+MLX_FLAGS 	= -L$(MLX_DIR) -lmlx_Linux -lX11 -lXext -lm
 
 NAME		= fractol
 
 all: $(NAME)
 
 $(NAME): $(OBJ_FILES) $(LIBFT)
-	$(CC) $(CFLAGS) -o $@ $^ -L$(LIBFT_PATH) -lft -lmlx -lGL -lm -lX11 -lXext
+	$(CC) $(CFLAGS) -o $@ $^ -L$(LIBFT_PATH) $(MLX_FLAGS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) -c $< -o $@

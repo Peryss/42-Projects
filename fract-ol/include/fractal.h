@@ -14,7 +14,7 @@
 # define FRACTAL_H
 
 # include "libft/libft.h"
-# include "mlx.h"
+# include "../minilibx-linux/mlx.h"
 # include <math.h>
 
 # define SIZE	700
