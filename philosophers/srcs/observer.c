@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 17:47:28 by pvass             #+#    #+#             */
-/*   Updated: 2024/12/12 13:44:47 by pvass            ###   ########.fr       */
+/*   Updated: 2025/01/16 13:20:51 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ int	all_ate_enough(t_philo *philos)
 
 	i = 0;
 	done = 0;
-	pthread_mutex_lock(philos->start_lock);
-	pthread_mutex_unlock(philos->start_lock);
 	if (philos[i].num_times_to_eat == -1)
 		return (0);
 	while (i < philos[0].num_of_philos)
@@ -49,38 +47,25 @@ int	is_dead(t_philo *philos)
 	return (res);
 }
 
-void	set_to_finished(t_philo *philos, int i)
+void	set_to_finished(t_program *program)
 {
-	
-	pthread_mutex_lock(philos[i].run_lock);
-	//pthread_mutex_lock(philos[i].dead_lock);
-	//*philos[i].dead = 1;
-	*philos[i].run = 0;
-	//printf("{%p, %p}\n", philos[i].run, philos[i].run_lock);
-	//pthread_mutex_unlock(philos[i].dead_lock);
-	pthread_mutex_unlock(philos[i].run_lock);
+	pthread_mutex_lock(&program->run_lock);
+	program->run_flag = 0;
+	pthread_mutex_unlock(&program->run_lock);
 }
 
-void	print_died(t_philo *philos)
+int	finished(t_program *program)
 {
-	size_t	t;
-
-	pthread_mutex_lock(philos->write_lock);
-	t = get_time() - philos->start_time;
-	printf("%zu	%d	%s\n", t, philos->id + 1, "died");
-	pthread_mutex_unlock(philos->write_lock);
-}
-
-int	finished(t_philo *philos)
-{
-	int	i;
+	int		i;
+	t_philo	*philos;
 
 	i = 0;
+	philos = program->philos;
 	while (i < philos[0].num_of_philos)
 	{
 		if (is_dead(&philos[i]) == 1)
 		{
-			set_to_finished(philos, i);
+			set_to_finished(program);
 			print_died(&philos[i]);
 			return (1);
 		}
@@ -89,7 +74,7 @@ int	finished(t_philo *philos)
 	if (all_ate_enough(philos) == 1)
 	{
 		pthread_mutex_lock(philos->run_lock);
-		*philos->run = 0;
+		program->run_flag = 0;
 		pthread_mutex_unlock(philos->run_lock);
 		return (1);
 	}
@@ -98,13 +83,16 @@ int	finished(t_philo *philos)
 
 void	*observe(void *pointer)
 {
-	t_philo	*philos;
+	t_program	*program;
 
-	philos = pointer;
+	program = pointer;
+	pthread_mutex_lock(&program->start_lock);
+	pthread_mutex_unlock(&program->start_lock);
 	while (1)
 	{
-		if (finished(philos) == 1)
+		if (finished(program) == 1)
 			break ;
+		usleep(5);
 	}
 	return (pointer);
 }

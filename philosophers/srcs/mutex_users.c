@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 16:46:29 by pvass             #+#    #+#             */
-/*   Updated: 2024/12/11 19:43:15 by pvass            ###   ########.fr       */
+/*   Updated: 2025/01/15 17:55:13 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,31 +32,11 @@ int	run_and_not_dead(t_philo *philo)
 	(void) res;
 	(void) philo;
 	pthread_mutex_lock(philo->run_lock);
-	//pthread_mutex_lock(philo->dead_lock);
-	if (*philo->run == 1 /*&& *philo->dead == 0*/)
+	if (*philo->run == 1)
 		res = 1;
-	//pthread_mutex_unlock(philo->dead_lock);
 	pthread_mutex_unlock(philo->run_lock);
 	return (res);
 }
-
-/*void	check_safe_exit_thread(t_philo *philo)
-{
-	if (run_and_not_dead(philo) == 0)
-		exit (0);
-}*/
-
-/*int	first_meal(t_philo *philo)
-{
-	int	res;
-
-	res = 0;
-	pthread_mutex_lock(&philo->meal_lock);
-	if (philo->meals_eaten == 0)
-		res = 1;
-	pthread_mutex_unlock(&philo->meal_lock);
-	return (res);
-}*/
 
 void	p_sleep_nomsg(size_t time, t_philo *philo)
 {
@@ -69,10 +49,12 @@ void	p_sleep_nomsg(size_t time, t_philo *philo)
 		usleep(100);
 }
 
-/*0{0x1ffeff59d0}
-0{0x1ffeff59d0}
-1{0x1ffeff5a00}
-1{0x1ffeff59d8}
-1{0x1ffeff5a28}
-f{0x1ffeff5a60}
-f{0x1ffeff5a88}*/
+void	print_died(t_philo *philos)
+{
+	size_t	t;
+
+	pthread_mutex_lock(philos->write_lock);
+	t = get_time() - philos->start_time;
+	printf("%zu	%d	%s\n", t, philos->id + 1, "died");
+	pthread_mutex_unlock(philos->write_lock);
+}

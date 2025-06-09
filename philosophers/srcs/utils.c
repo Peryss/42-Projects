@@ -6,13 +6,11 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 13:54:30 by pvass             #+#    #+#             */
-/*   Updated: 2024/12/12 14:20:52 by pvass            ###   ########.fr       */
+/*   Updated: 2025/01/15 17:50:13 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-
-
 
 int	ft_atoi(const char *str)
 {

@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 13:57:23 by pvass             #+#    #+#             */
-/*   Updated: 2024/12/12 13:54:18 by pvass            ###   ########.fr       */
+/*   Updated: 2025/01/15 16:56:55 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,13 @@
 void	create_and_destroy_threads(t_program *program, pthread_mutex_t *forks)
 {
 	pthread_t	observer;
-	int			num_philos;
 	int			i;
 
 	pthread_mutex_lock(&program->start_lock);
-	num_philos = program->philos->num_of_philos;
-	if (pthread_create(&observer, NULL, observe, program->philos) != 0)
+	if (pthread_create(&observer, NULL, observe, program) != 0)
 		return (safe_exit("Thread create error", program, forks, 2));
 	i = 0;
-	(void) i;
-	(void) num_philos;
-	while (i < num_philos)
+	while (i < program->philos->num_of_philos)
 	{
 		if (pthread_create(&program->philos[i].thread, NULL, routine,
 				&program->philos[i]) != 0)
@@ -33,21 +29,14 @@ void	create_and_destroy_threads(t_program *program, pthread_mutex_t *forks)
 		i++;
 	}
 	pthread_mutex_unlock(&program->start_lock);
-	//if (pthread_join(observer, NULL) != 0)
-		//return (safe_exit("Thread join error", program, forks, 3));
+	if (pthread_join(observer, NULL) != 0)
+		return (safe_exit("Thread join error", program, forks, 4));
 	i = 0;
-	//printf("asdasdasd\n");
-	while (i < num_philos)
+	while (i < program->philos->num_of_philos)
 	{
 		if (pthread_join(program->philos[i].thread, NULL) != 0)
-			return (safe_exit("Thread join error", program, forks, 3));
+			return (safe_exit("Thread join error", program, forks, 4));
 		i++;
-		printf("ajajajajaaaa%d\n", i);
 	}
-	if (pthread_join(observer, NULL) != 0)
-		return (safe_exit("Thread join error", program, forks, 3));
-	/* pthread_mutex_lock(program->philos->write_lock);
-	printf("asdasdasasdasdasdd\n");
-	pthread_mutex_unlock(program->philos->write_lock); */
 	return (safe_exit("Finished", program, forks, 0));
 }
