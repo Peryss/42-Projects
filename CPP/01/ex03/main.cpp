@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 14:07:39 by pvass             #+#    #+#             */
-/*   Updated: 2025/05/29 16:23:57 by pvass            ###   ########.fr       */
+/*   Updated: 2025/06/17 17:34:04 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int main()
 		club.setType("some other type of club");
 		bob.attack();
 	}
+	std::cout << "-----------------------" << std::endl;
 	{
 		Weapon club = Weapon("crude spiked club");
 		HumanB jim("Jim");

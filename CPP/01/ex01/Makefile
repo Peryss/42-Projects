@@ -2,7 +2,7 @@ SRCS        = Zombie.cpp zombieHorde.cpp main.cpp
 
 OBJ         = ${SRCS:.cpp=.o}
 
-NAME        = zombie_hord
+NAME        = zombieHord
 
 CPP         = c++
 

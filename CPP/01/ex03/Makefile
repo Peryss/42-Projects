@@ -2,7 +2,7 @@ SRCS        = main.cpp HumanA.cpp HumanB.cpp Weapon.cpp
 
 OBJ         = ${SRCS:.cpp=.o}
 
-NAME        = brain
+NAME        = unnecesaryViolence
 
 CPP         = c++
 

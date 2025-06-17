@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 12:29:20 by pvass             #+#    #+#             */
-/*   Updated: 2025/05/29 13:51:41 by pvass            ###   ########.fr       */
+/*   Updated: 2025/06/17 17:23:58 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int main()
 			horde[i].announce();
 		delete[] horde;
 	}
-
+	std::cout << "-1-" << std::endl;
 	N = 0;
 	horde = zombieHorde(N, "Taka");
 
@@ -33,7 +33,7 @@ int main()
 			horde[i].announce();
 		delete[] horde;
 	}
-	
+	std::cout << "-2-" << std::endl;
 	N = -23;
 	horde = zombieHorde(N, "Taka");
 

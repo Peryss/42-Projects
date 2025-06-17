@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/17 17:18:55 by pvass             #+#    #+#             */
+/*   Updated: 2025/06/17 17:43:18 by pvass            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 #ifndef HARL_HPP
 #define HARL_HPP
@@ -14,7 +26,7 @@ private:
 public:
 	Harl();
 	~Harl();
-	void	complain ( std::string level);
+	void	complain ( const std::string level);
 };
 
 #endif

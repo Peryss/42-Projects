@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Harl.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/17 17:19:11 by pvass             #+#    #+#             */
+/*   Updated: 2025/06/17 17:48:34 by pvass            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 #include "Harl.hpp"
 
@@ -33,7 +45,8 @@ void Harl::error()
     std::cout << "This is unacceptable! I want to speak to the manager now." << std::endl;
 }
 
-void Harl::complain(std::string level) {
+void Harl::complain(const std::string level)
+{
     std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
     void (Harl::*funcs[])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error}; // array of functions
 
