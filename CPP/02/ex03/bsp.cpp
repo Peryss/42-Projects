@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 09:38:40 by pvass             #+#    #+#             */
-/*   Updated: 2025/06/18 09:38:41 by pvass            ###   ########.fr       */
+/*   Updated: 2025/06/18 13:06:53 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 Fixed	area(Point const a, Point const b, Point const c)
 {
-	return ((a.getX() * (b.getY() - c.getY()) + b.getX() * (c.getY() - a.getY() + c.getX() * (a.getY() - b.getY()))).abs() / 2);
+	return ((a.getX() * (b.getY() - c.getY()) + b.getX() * (c.getY() - a.getY()) + c.getX() * (a.getY() - b.getY())).abs() / 2);
 }
 
 bool bsp( Point const a, Point const b, Point const c, Point const point)

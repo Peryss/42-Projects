@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 09:38:57 by pvass             #+#    #+#             */
-/*   Updated: 2025/06/18 09:38:59 by pvass            ###   ########.fr       */
+/*   Updated: 2025/06/18 12:51:51 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,22 @@
 
 Point::Point(): x(0), y(0)
 {
-	std::cout << "Default constructor called" << std::endl;
+	//std::cout << "Default constructor called" << std::endl;
 }
 
 Point::Point(const Fixed x, const Fixed y): x(x), y(y)
 {
-	std::cout << "Constructor called" << std::endl;
+	//std::cout << "Constructor called" << std::endl;
 }
 
 Point::Point(const Point& other): x(other.x), y(other.y)
 {
-	std::cout << "Copy constructor called" << std::endl;
+	//std::cout << "Copy constructor called" << std::endl;
 }
 
 Point& Point::operator=(const Point& other)
 {
-	std::cout << "Copy assignment called" << std::endl;
+	//std::cout << "Copy assignment called" << std::endl;
 	if (this != &other)
 	{
 		this->x = other.x;
@@ -42,7 +42,7 @@ Point& Point::operator=(const Point& other)
 
 Point::~Point()
 {
-	std::cout << "Deconstructor called" << std::endl;
+	//std::cout << "Deconstructor called" << std::endl;
 }
 
 Fixed Point::getX() const
