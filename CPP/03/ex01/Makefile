@@ -1,12 +1,15 @@
 SRCS        = main.cpp ClapTrap.cpp ScavTrap.cpp
 OBJ         = ${SRCS:.cpp=.o}
+DEPS        = ${SRCS:.cpp=.d}
 
 NAME        = scavtrap
 
 CPP         = c++
-CPPFLAGS    = -Wall -Wextra -Werror -g -std=c++98 -pedantic
+CPPFLAGS    = -Wall -Wextra -Werror -g -std=c++98 -pedantic -MMD
 
 all:        ${NAME}
+
+-include ${DEPS}
 
 .cpp.o:
 	${CPP} ${CPPFLAGS} -c $< -o $@
@@ -15,7 +18,7 @@ ${NAME}:    ${OBJ}
 	${CPP} ${CPPFLAGS} -o ${NAME} ${OBJ}
 
 clean:
-	rm -f ${OBJ}
+	rm -f ${OBJ} ${DEPS}
 
 fclean:     clean
 	rm -f ${NAME}
