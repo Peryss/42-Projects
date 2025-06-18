@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/18 09:38:15 by pvass             #+#    #+#             */
+/*   Updated: 2025/06/18 09:47:50 by pvass            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 #ifndef FIXED_HPP
 #define FIXED_HPP
@@ -15,7 +27,6 @@ public:
 	Fixed(const Fixed& other);
 	Fixed(const int value);
 	Fixed(const float value);
-
 	Fixed& operator=(const Fixed& other);
 	~Fixed();
 

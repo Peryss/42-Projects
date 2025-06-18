@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/18 09:38:23 by pvass             #+#    #+#             */
+/*   Updated: 2025/06/18 11:27:06 by pvass            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 #include "Fixed.hpp"
 
@@ -127,13 +139,13 @@ Fixed Fixed::operator*(const Fixed& other) const
 {
 	Fixed res;
 	int64_t rawA = static_cast<int64_t>(getRawBits());
-	std::cout << "rawA:"<< rawA << std::endl;
+	//std::cout << "rawA:"<< rawA << std::endl;
 	int64_t rawB = other.getRawBits();
-	std::cout << "rawB:"<< rawB << std::endl;
+	//std::cout << "rawB:"<< rawB << std::endl;
 	int64_t mul = rawA * rawB;
-	std::cout << "mul:"<< mul << std::endl;
+	//std::cout << "mul:"<< mul << std::endl;
 	res.setRawBits(static_cast<int>(mul >> fractionalbits));
-	std::cout << "mul:"<< static_cast<int>(mul >> fractionalbits) << std::endl;
+	//std::cout << "mul:"<< static_cast<int>(mul >> fractionalbits) << std::endl;
 	return res;
 }
 

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/18 09:38:11 by pvass             #+#    #+#             */
+/*   Updated: 2025/06/18 09:53:45 by pvass            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 #include "Fixed.hpp"
 
@@ -17,7 +29,7 @@ Fixed::Fixed(const Fixed& other)
 Fixed::Fixed(const int value)
 {
 	std::cout << "Const int constructor called" << std::endl;
-	this->value = value;
+	this->value = value * (1 << this->fractionalbits);
 }
 
 //const float constructor
@@ -60,7 +72,6 @@ void Fixed::setRawBits(int const raw)
 //to float
 float Fixed::toFloat( void ) const
 {
-	std::cout << "toFloat member function called" << std::endl;
 	return (static_cast<float>(this->value) / (1 << this->fractionalbits));
 }
 
