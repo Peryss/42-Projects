@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 16:11:35 by pvass             #+#    #+#             */
-/*   Updated: 2025/06/19 16:36:38 by pvass            ###   ########.fr       */
+/*   Updated: 2025/06/19 16:46:00 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ Dog::Dog(): brain(new Brain())
     std::cout << "Dog created\n";
 }
 
-Dog::Dog(const Dog& other) : Animal(other), brain(new Brain(*other.brain))
+Dog::Dog(const Dog& other) : AAnimal(other), brain(new Brain(*other.brain))
 {
 	*this = other;
 	std::cout << "Dog copied\n";

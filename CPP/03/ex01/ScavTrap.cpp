@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 13:22:59 by pvass             #+#    #+#             */
-/*   Updated: 2025/06/18 13:23:00 by pvass            ###   ########.fr       */
+/*   Updated: 2025/06/18 16:24:52 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void ScavTrap::guardGate()
 	if (this->hp <= 0)
 		std::cout << this->name << " is dead, cannot enter Gate Keeper mode!" << std::endl;
 	else if (this->energy <= 0)
-		std::cout << this->name << " has no energy left, enter Gate Keeper mode!" << std::endl;
+		std::cout << this->name << " has no energy left, cannot enter Gate Keeper mode!" << std::endl;
 }
 
 void ScavTrap::attack(const std::string& target)
@@ -88,7 +88,7 @@ void ScavTrap::beRepaired(unsigned int amount)
 		this->hp += amount;
 	}
 	if (this->hp <= 0)
-		std::cout << this->name << "is dead, cannot be repaired!" << std::endl;
+		std::cout << this->name << " is dead, cannot be repaired!" << std::endl;
 	else if (this->energy <= 0)
-		std::cout << this->name << "has no energy left, cannot be repaired!" << std::endl;
+		std::cout << this->name << " has no energy left, cannot be repaired!" << std::endl;
 }

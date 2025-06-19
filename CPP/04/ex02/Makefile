@@ -1,8 +1,8 @@
-SRCS        = main.cpp Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp
+SRCS        = main.cpp Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
 OBJ         = ${SRCS:.cpp=.o}
 DEPS        = ${SRCS:.cpp=.d}
 
-NAME        = ex00
+NAME        = ex02
 
 CPP         = c++
 CPPFLAGS    = -Wall -Wextra -Werror -g -std=c++98 -MP -MD

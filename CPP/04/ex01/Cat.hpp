@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/19 16:11:32 by pvass             #+#    #+#             */
+/*   Updated: 2025/06/19 16:26:41 by pvass            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CAT_HPP
 #define CAT_HPP
 
@@ -15,6 +27,8 @@ class Cat: public Animal
 		~Cat();
 
 		void makeSound() const;
+		void setIdeas(const std::string idea);
+		void printIdeas();
 };
 
 #endif

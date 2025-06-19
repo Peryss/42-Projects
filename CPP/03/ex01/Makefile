@@ -5,9 +5,11 @@ DEPS        = ${SRCS:.cpp=.d}
 NAME        = scavtrap
 
 CPP         = c++
-CPPFLAGS    = -Wall -Wextra -Werror -g -std=c++98 -pedantic -MMD
+CPPFLAGS    = -Wall -Wextra -Werror -g -std=c++98 -MP -MD
 
 all:        ${NAME}
+
+%.d: ;
 
 -include ${DEPS}
 

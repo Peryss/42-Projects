@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 16:11:39 by pvass             #+#    #+#             */
-/*   Updated: 2025/06/19 16:37:37 by pvass            ###   ########.fr       */
+/*   Updated: 2025/06/19 17:23:28 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 int main()
 {
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
+	const AAnimal* j = new Dog();
+	const AAnimal* i = new Cat();
 	delete j;//should not create a leak
 	delete i;
 
@@ -40,6 +40,10 @@ int main()
 	dog->printIdeas();
 
 	delete dog;
+
+	std::cout << "-------------------" << std::endl;
+
+	//const AAnimal* animal = new AAnimal();
 
 	return 0;
 }

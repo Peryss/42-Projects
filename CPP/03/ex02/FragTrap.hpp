@@ -6,12 +6,12 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 13:23:16 by pvass             #+#    #+#             */
-/*   Updated: 2025/06/18 13:23:18 by pvass            ###   ########.fr       */
+/*   Updated: 2025/06/18 16:25:35 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRAGTRAP_HPP
-#define FRAGTAP_HPP
+#define FRAGTRAP_HPP
 
 #include "ClapTrap.hpp"
 

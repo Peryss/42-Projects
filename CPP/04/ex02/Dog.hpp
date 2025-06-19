@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/19 16:10:59 by pvass             #+#    #+#             */
-/*   Updated: 2025/06/19 16:11:01 by pvass            ###   ########.fr       */
+/*   Created: 2025/06/19 16:11:37 by pvass             #+#    #+#             */
+/*   Updated: 2025/06/19 16:45:43 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-#define CAT_HPP
+#ifndef DOG_HPP
+#define DOG_HPP
 
 #include "Animal.hpp"
+#include "Brain.hpp"
 
-class Cat: public Animal
+class Dog: public AAnimal
 {
+	private:
+		Brain* brain;
 	public:
-		Cat();
-		Cat(const Cat& other);
-		Cat& operator=(const Cat& other);
-		~Cat();
+		Dog();
+		Dog(const Dog& other);
+		Dog& operator=(const Dog& other);
+		~Dog();
 
 		void makeSound() const;
+		void setIdeas(const std::string idea);
+		void printIdeas();
 };
 
 #endif

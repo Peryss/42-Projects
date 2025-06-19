@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 13:23:21 by pvass             #+#    #+#             */
-/*   Updated: 2025/06/18 13:23:22 by pvass            ###   ########.fr       */
+/*   Updated: 2025/06/18 16:28:26 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int main()
     frag.highFivesGuys();
     frag.beRepaired(30);
 
-    std::cout << "\n=== Depleting energy ===\n";
+	std::cout << "-----------------------" << std::endl;
     for (int i = 0; i < 50; ++i) {
         frag.attack("Dummy");
     }
@@ -79,7 +79,4 @@ int main()
     frag.highFivesGuys();
 
 	std::cout << "-----------------------" << std::endl;
-    FragTrap fragCopy(frag); // will copy dead bot
-    FragTrap fragAssigned;
-    fragAssigned = frag;
 }

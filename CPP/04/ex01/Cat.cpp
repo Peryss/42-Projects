@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/19 16:11:29 by pvass             #+#    #+#             */
+/*   Updated: 2025/06/19 16:35:12 by pvass            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Cat.hpp"
 
 Cat::Cat(): brain(new Brain())
@@ -34,4 +46,17 @@ Cat::~Cat()
 void Cat::makeSound() const
 {
     std::cout << "Meow\n";
+}
+
+void Cat::setIdeas(const std::string idea)
+{
+	for (int i = 0; i < 100; i++)
+		this->brain->setIdea(i, idea);
+}
+
+void Cat::printIdeas()
+{
+	if(this->brain != NULL)
+	for (int i = 0; i < 100; i++)
+		std::cout << "Idea {" << i << "}: " << this->brain->getIdea(i) << std::endl;
 }
