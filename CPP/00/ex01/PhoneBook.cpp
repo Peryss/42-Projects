@@ -94,7 +94,7 @@ void    PhoneBook::search_contacts()
 	}
     if (is_empty(index) == 1)
     {
-        std::cout << "No contact information" << std::endl;
+        std::cout << "No contact inFormation" << std::endl;
         return ;
     }
     else if (index.at(0) == '0' && index.length() == 1 && PhoneBook::get_size() > 0)
@@ -114,5 +114,5 @@ void    PhoneBook::search_contacts()
     else if (index.at(0) == '7' && index.length() == 1 && PhoneBook::get_size() > 7)
         PhoneBook::get_contact(7).print_contact();
     else
-        std::cout << "No contact information" << std::endl;
+        std::cout << "No contact inFormation" << std::endl;
 }
