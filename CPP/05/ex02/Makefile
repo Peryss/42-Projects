@@ -7,9 +7,11 @@ NAME        = ex02
 CPP         = c++
 CPPFLAGS    = -Wall -Wextra -Werror -g -std=c++98 -MD -MP
 
--include $(DEPS)
-
 all:        ${NAME}
+
+%.d: ;
+
+-include $(DEPS)
 
 .cpp.o:
 	${CPP} ${CPPFLAGS} -c $< -o $@

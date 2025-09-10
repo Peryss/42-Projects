@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/10 09:34:41 by pvass             #+#    #+#             */
+/*   Updated: 2025/09/10 11:48:44 by pvass            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <iostream>
 #include "Bureaucrat.hpp"
 #include "ShrubberyCreationForm.hpp"
@@ -7,7 +19,7 @@
 int main() {
     try {
         // --- ShrubberyCreationForm tests ---
-        std::cout << "== ShrubberyCreationForm tests ==\n";
+        std::cout << std::endl << "== ShrubberyCreationForm tests ==" << std::endl;
         Bureaucrat bob("Bob", 100);           // ok for sign(145) & exec(137)
         ShrubberyCreationForm garden("garden");
 
@@ -33,7 +45,7 @@ int main() {
         joe.executeForm(garden);
 
         // --- RobotomyRequestForm tests ---
-        std::cout << "\n== RobotomyRequestForm tests ==\n";
+        std::cout << std::endl << "== RobotomyRequestForm tests ==" << std::endl;
         Bureaucrat alice("Alice", 45);        // sign<=72, exec<=45 -> perfect
         RobotomyRequestForm robo("Marvin");
 
@@ -58,7 +70,7 @@ int main() {
             std::cout << "[expected] robotomy low-grade sign: " << e.what() << "\n";
         }
 
-		std::cout << "\n== PresidentialPardonForm tests ==\n";
+		std::cout << std::endl << "== PresidentialPardonForm tests ==" << std::endl;
 		PresidentialPardonForm pardon("Arthur Dent");
 
 		// Execute before signing -> expect NotSignedException

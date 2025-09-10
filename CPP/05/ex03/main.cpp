@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/10 09:35:33 by pvass             #+#    #+#             */
+/*   Updated: 2025/09/10 12:05:06 by pvass            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
@@ -16,7 +28,7 @@ int main() {
         Bureaucrat boss("Boss", 1);      // can sign & execute anything
         Bureaucrat low("Low", 150);      // cannot execute most things
 
-        std::cout << "== Intern creates RobotomyRequestForm ==\n";
+        std::cout << std::endl << "== Intern creates RobotomyRequestForm ==" << std::endl;
         AForm* r1 = 0;
         try {
             r1 = intern.makeForm("robotomy request", "Bender");
@@ -31,7 +43,7 @@ int main() {
         }
         delete r1;
 
-        std::cout << "\n== Intern creates ShrubberyCreationForm ==\n";
+        std::cout << std::endl << "== Intern creates ShrubberyCreationForm ==" << std::endl;
         AForm* s1 = 0;
         try {
             s1 = intern.makeForm("shrubbery creation", "backyard");
@@ -43,7 +55,7 @@ int main() {
         }
         delete s1;
 
-        std::cout << "\n== Intern creates PresidentialPardonForm ==\n";
+        std::cout << std::endl << "== Intern creates PresidentialPardonForm ==" << std::endl;
         AForm* p1 = 0;
         try {
             p1 = intern.makeForm("presidential pardon", "Arthur Dent");
@@ -55,13 +67,14 @@ int main() {
         }
         delete p1;
 
-        std::cout << "\n== Intern unknown form (should throw) ==\n";
+        std::cout << std::endl << "== Intern unknown form (should throw) ==" << std::endl;
         try {
             AForm* bad = intern.makeForm("time travel permit", "Morty");
             // If your makeForm throws, we never get here; if it returns NULL, guard:
-            if (bad) delete bad;
+            if (bad) 
+                delete bad;
         } catch (const Intern::UnknownFormException& e) {
-            std::cout << "[unknown] caught UnknownFormException: " << e.what() << std::endl;
+            std::cout << e.what() << std::endl;
         } catch (const std::exception& e) {
             std::cout << "[unknown] other exception: " << e.what() << std::endl;
         }

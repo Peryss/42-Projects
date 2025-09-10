@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   RobotomyRequestForm.cpp                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/10 09:34:50 by pvass             #+#    #+#             */
+/*   Updated: 2025/09/10 09:35:02 by pvass            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "RobotomyRequestForm.hpp"
 #include "Bureaucrat.hpp"
-#include <cstdlib>   // for srand, rand
-#include <ctime>     // for time
-#include <iostream>  // for std::cout
+#include <cstdlib>
+#include <ctime>
+#include <iostream>
 
 RobotomyRequestForm::RobotomyRequestForm() : AForm("RobotomyRequestForm", "target", 72, 45) {}
 

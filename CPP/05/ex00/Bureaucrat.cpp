@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/10 09:33:39 by pvass             #+#    #+#             */
+/*   Updated: 2025/09/10 09:50:24 by pvass            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Bureaucrat.hpp"
 
 Bureaucrat::Bureaucrat(): _name("Unknown"), _grade(150)
@@ -66,6 +78,6 @@ const char *Bureaucrat::GradeTooLowException::what() const throw()
 
 std::ostream& operator<<(std::ostream& out, const Bureaucrat& bureaucrat)
 {
-	out << bureaucrat.getName() << ", grade: " << bureaucrat.getGrade();
+	out << bureaucrat.getName() << ", bureaucrat grade: " << bureaucrat.getGrade();
 	return out;
 }

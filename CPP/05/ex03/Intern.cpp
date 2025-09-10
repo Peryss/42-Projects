@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Intern.cpp                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/10 09:35:28 by pvass             #+#    #+#             */
+/*   Updated: 2025/09/10 12:04:18 by pvass            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Intern.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
 #include <iostream>
-#include <cctype>   // std::tolower
+#include <cctype>
 
 Intern::Intern() {}
 Intern::Intern(const Intern&) {}
@@ -50,11 +62,10 @@ AForm* Intern::makeForm(const std::string& formName, const std::string& target) 
             return specs[i].factory(target);
         }
     }
-    std::cout << "Intern cannot create form: \"" << formName << "\" (unknown form name)" << std::endl;
     throw UnknownFormException();
 }
 
 const char* Intern::UnknownFormException::what() const throw()
 {
-    return "Unknown form";
+    return "Intern cannot create form (Unknown form type)";
 }
