@@ -1,3 +1,4 @@
+
 SRCS        = main.cpp Serializer.cpp
 OBJ         = ${SRCS:.cpp=.o}
 DEPS		= $(OBJ:.o=.d)

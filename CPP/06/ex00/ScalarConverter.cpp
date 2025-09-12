@@ -1,11 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ScalarConverter.cpp                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/12 10:12:41 by pvass             #+#    #+#             */
+/*   Updated: 2025/09/12 11:03:25 by pvass            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ScalarConverter.hpp"
-#include <iostream>
-#include <iomanip>
-#include <limits>
-#include <cstdlib>   // strtod, strtol
-#include <climits>   // INT_MIN, INT_MAX
-#include <cctype>    // std::isdigit
-#include <cmath>
 
 ScalarConverter::ScalarConverter() {}
 
@@ -199,7 +204,7 @@ static void printFloatFromDouble(double d, bool isPseudo) {
         std::cout << "impossible" << std::endl;
         return;
     }
-    if (std::fabs(d) > static_cast<double>(std::numeric_limits<float>::max())) {
+    if (std::fabs(d) > /* static_cast<double>(std::numeric_limits<float>::max()) */ 340282346638528859811704183484516925440.0000000000000000) {
         std::cout << "impossible" << std::endl;
         return;
     }
@@ -254,8 +259,8 @@ void ScalarConverter::convert(const std::string& input) {
             // parsing failed unexpectedly; treat as impossible for all
             std::cout << "char:		impossible" << std::endl;
             std::cout << "int:		impossible"  << std::endl;
-            std::cout << "float:	impossible" << std::endl;
-            std::cout << "double:	impossible" << std::endl;
+            std::cout << "float:		impossible" << std::endl;
+            std::cout << "double:		impossible" << std::endl;
             return;
         }
         printCharFromLong(v);
@@ -271,10 +276,10 @@ void ScalarConverter::convert(const std::string& input) {
         const std::string core = input.substr(0, input.size()-1);
         double d;
         if (!parseDouble(core, d)) {
-            std::cout << "char: impossible" << std::endl;
-            std::cout << "int: impossible"  << std::endl;
-            std::cout << "float: impossible" << std::endl;
-            std::cout << "double: impossible" << std::endl;
+            std::cout << "char:		impossible" << std::endl;
+            std::cout << "int:		impossible"  << std::endl;
+            std::cout << "float:		impossible" << std::endl;
+            std::cout << "double:		impossible" << std::endl;
             return;
         }
         printCharFromDouble(d, false);
@@ -291,8 +296,8 @@ void ScalarConverter::convert(const std::string& input) {
         if (!parseDouble(input, d)) {
             std::cout << "char:		impossible" << std::endl;
             std::cout << "int:		impossible" << std::endl;
-            std::cout << "float:	impossible" << std::endl;
-            std::cout << "double:	impossible" << std::endl;
+            std::cout << "float:		impossible" << std::endl;
+            std::cout << "double:		impossible" << std::endl;
             return;
         }
         printCharFromDouble(d, false);
@@ -305,6 +310,6 @@ void ScalarConverter::convert(const std::string& input) {
     // Fallbacks treated as invalid
     std::cout << "char:		impossible" << std::endl;
     std::cout << "int:		impossible" << std::endl;
-    std::cout << "float:	impossible" << std::endl;
-    std::cout << "double:	impossible" << std::endl;
+    std::cout << "float:		impossible" << std::endl;
+    std::cout << "double:		impossible" << std::endl;
 }

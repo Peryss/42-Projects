@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ABC.cpp                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/12 10:13:09 by pvass             #+#    #+#             */
+/*   Updated: 2025/09/12 11:29:07 by pvass            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ABC.hpp"
 
 Base *generate(void)
@@ -26,17 +38,17 @@ void identify(Base* p)
 void identify(Base& p)
 {
 	try{
-		dynamic_cast<A&>(p);
+		(void)dynamic_cast<A&>(p);
 		std::cout << "Type A" << std::endl;
 	}
 	catch (std::exception &e) {
 		try{
-			dynamic_cast<B&>(p);
+			(void)dynamic_cast<B&>(p);
 			std::cout << "Type B" << std::endl;
 		}
 		catch (std::exception &e) {
 			try{
-				dynamic_cast<C&>(p);
+				(void)dynamic_cast<C&>(p);
 				std::cout << "Type C" << std::endl;
 			}
 			catch (std::exception &e) {
