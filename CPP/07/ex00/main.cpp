@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/12 11:33:13 by pvass             #+#    #+#             */
+/*   Updated: 2025/09/12 11:38:00 by pvass            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <iostream>
 #include "Whatever.hpp"
 
@@ -9,6 +21,8 @@ int main( void ) {
 	std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
 	std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;
 
+	std::cout << std::endl;
+	
 	std::string c = "chaine1";
 	std::string d = "chaine2";
 	::swap(c, d);
@@ -16,12 +30,16 @@ int main( void ) {
 	std::cout << "min( c, d ) = " << ::min( c, d ) << std::endl;
 	std::cout << "max( c, d ) = " << ::max( c, d ) << std::endl;
 
-	float e = 4.2;
-	float f = 42.42;
+	std::cout << std::endl;
+
+	float e = 4.2f;
+	float f = 42.42f;
 	::swap(e, f);
 	std::cout << "e = " << e << ", f = " << f << std::endl;
 	std::cout << "min( e, f ) = " << ::min( e, f ) << std::endl;
 	std::cout << "max( e, f ) = " << ::max( e, f ) << std::endl;
+
+	std::cout << std::endl;
 
 	double g = 4.2;
 	double h = 42.42;

@@ -2,7 +2,7 @@ SRCS        = main.cpp
 OBJ         = ${SRCS:.cpp=.o}
 DEPS		= $(OBJ:.o=.d)
 
-NAME        = ex01
+NAME        = ex02
 
 CPP         = c++
 CPPFLAGS    = -Wall -Wextra -Werror -g -std=c++98 -MD -MP

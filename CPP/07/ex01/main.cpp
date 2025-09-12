@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/12 11:33:23 by pvass             #+#    #+#             */
+/*   Updated: 2025/09/12 11:48:35 by pvass            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <iostream>
 #include "iter.hpp"
 
@@ -9,26 +21,21 @@ int main () {
 	std::cout << "Int array: " << std::endl;
 	iter(array, 10, print_elem);
 	std::cout << std::endl;
-	iter(array, 10, add5<int>);
+	iter(array, 10, add5);
 	iter(array, 10, print_elem);
 	std::cout << std::endl;
 
 	std::cout << "Double array: " << std::endl;
-	iter(array2, 5, print_elem<double>);
+	iter(array2, 5, print_elem);
 	std::cout << std::endl;
-	iter(array2, 5, add5<double>);
-	iter(array2, 5, print_elem<double>);
-	std::cout << std::endl;
-
-	std::cout << "Int array: " << std::endl;
-	iter(array3, 12, print_elem<char>);
-	std::cout << std::endl;
-	iter(array3, 5, add5<char>);
-	iter(array3, 12, print_elem<char>);
+	iter(array2, 5, add5);
+	iter(array2, 5, print_elem);
 	std::cout << std::endl;
 
-	iter(array, 0, print_elem);
-	iter(array, -10, print_elem);
-	int *t = NULL;
-	iter(t, 10, print_elem);
+	std::cout << "Char array: " << std::endl;
+	iter(array3, 12, print_elem);
+	std::cout << std::endl;
+	iter(array3, 5, add5);
+	iter(array3, 12, print_elem);
+	std::cout << std::endl;
 }
