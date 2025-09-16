@@ -13,19 +13,26 @@
 #ifndef EASYFIND_HPP
 #define EASYFIND_HPP
 
+#include <algorithm>
+#include <stdexcept> 
 #include <iostream>
+#include <vector>
+#include <list>
+#include <deque>
 
-class NotFoundException: public std::exception {
-	private:
-		std::string _massage;
-	public:
-		NotFoundException(std::string msg);
+class NotFoundException : public std::exception {
+public:
+    const char* what() const throw() {
+        return "Element not found in container";
+    }
 };
 
 template <typename T> typename T::iterator easyfind(T& container, int to_find) {
-	for (typename T::iterator it = container.begin(); it != container.end(); i++)
-		if (i == to_find)
-			return (to_find);
+	typename T::iterator it = std::find(container.begin(), container.end(), to_find);
+    if (it == container.end()) {
+        throw NotFoundException();
+    }
+    return it;
 }
 
 #endif
