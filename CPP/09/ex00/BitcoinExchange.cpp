@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 10:40:21 by pvass             #+#    #+#             */
-/*   Updated: 2025/09/17 15:52:53 by pvass            ###   ########.fr       */
+/*   Updated: 2025/09/17 16:25:56 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ bool bad_filename(char* in) {
 	return false ;
 }
 
-void	loadExchangeRates(std::map<Date , float> map) {
+void	loadExchangeRates(std::map<Date , float>& rates) {
 	std::ifstream in("data.csv");
 	if (!in) {
 		throw std::runtime_error("Cannot open data.csv");
@@ -46,7 +46,7 @@ void	loadExchangeRates(std::map<Date , float> map) {
 			if (nr < 0)
 				throw std::runtime_error("Negative exchange rate: " + rate);
 			Date d(date);
-			map.insert(std::pair<Date,float> (d,nr));
+			rates.insert(std::pair<Date,float> (d,nr));
 		}
 		catch (const std::exception& e) {
 			std::cerr << "Error:" << e.what() << std::endl;
@@ -55,9 +55,9 @@ void	loadExchangeRates(std::map<Date , float> map) {
 	
 }
 
-Date::Date () : _day(1), _month(1), _year(0), _datestr(std::string("0-1-1")) {}
+Date::Date () : _datestr(std::string("0-1-1")), _day(1), _month(1), _year(0) {}
 
-Date::Date (const Date& other): _day(other._day), _month(other._month), _year(other._year), _datestr(other._datestr) {
+Date::Date (const Date& other): _datestr(other._datestr), _day(other._day), _month(other._month), _year(other._year) {
 	(void)other;
 }
 
@@ -69,18 +69,17 @@ static int to_int_checked(const std::string& s, const char* what) {
 
     if (end == str || *end != '\0')
         throw std::invalid_argument(std::string("invalid ") + what + ": " + s);
-    if (errno == ERANGE || v > INT_MAX)
+    else if (errno == ERANGE || v > INT_MAX)
         throw std::out_of_range(std::string(what) + " out of range: " + s);
-	if (v < 0)
+	else if (v < 0)
 		throw std::out_of_range(std::string(what) + " not a positive number: " + s);
-
     return static_cast<int>(v);
 }
 
 void validate_date (Date date)
 {
 	bool leapyear = false;
-	if (date.getYear() % 4 == 0 && (date.getYear()%1000 == 0 || date.getYear() % 100 != 0))
+	if (date.getYear() % 4 == 0 && (date.getYear() % 1000 == 0 || date.getYear() % 100 != 0))
 		leapyear = true;
 	if (date.getMonth() > 12 || date.getMonth() == 0)
 		throw std::invalid_argument("bad input: " + date.getDatestr());
@@ -179,4 +178,12 @@ int Date::getYear() {
 
 std::string Date::getDatestr() {
 	return _datestr;
+}
+
+bool Date::operator<(const Date& rhs) const {
+    if (_year  != rhs._year)
+		return _year  < rhs._year;
+    if (_month != rhs._month)
+		return _month < rhs._month;
+    return _day < rhs._day;
 }
