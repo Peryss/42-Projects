@@ -5,29 +5,29 @@ int main(int argc, char** argv) {
 		std::cerr << "Please provide numbers to sort" << std::endl;
 		return 0;
 	}
-	std::vector<Tracker> v;
-	std::deque<Tracker> d;
 	try {
+		std::vector<Tracker> v;
+		std::deque<Tracker> d;
 		for (int i = 1; i < argc; i++)
 		{
 			parse_input(v, argv[i]);
-			//parse_input(d, argv[i]);
+			parse_input(d, argv[i]);
 		}
-		std::vector<Tracker*> v_2;            // or std::deque<Tracker*> if you prefer
+		std::vector<Tracker*> v_2;
         v_2.reserve(v.size());
         for (std::vector<Tracker>::size_type i = 0; i < v.size(); ++i)
             v_2.push_back(&v[i]);
+
+		std::deque<Tracker*> d_2;
+        for (std::deque<Tracker>::size_type i = 0; i < d.size(); ++i)
+            d_2.push_back(&d[i]);
 
 		std::cout << "Before:	";
 		for (std::vector<Tracker>::iterator it = v.begin(); it != v.end(); ++it)
 			std::cout << " " << (*it).getValue();
 		std::cout << std::endl;
-
-
-
-		in_sort(v_2);
-
-		//in_sort(d);
+		in_sort(v_2, "vector");
+		in_sort(d_2, "deque");
 	}
 	catch(std::exception &e) {
 		std::cerr << "Error: " << e.what() << std::endl;

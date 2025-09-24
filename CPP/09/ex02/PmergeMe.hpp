@@ -11,25 +11,32 @@
 #include <time.h>
 #include <unistd.h>
 #include <iomanip>
+#include <list>
+
+extern std::size_t comparisons; 
 
 class Tracker {
 	private:
 		int		_value;
-		Tracker *_pair;
+		std::list<Tracker *> _pair;
 	public:
 		Tracker();
 		Tracker (int value);
-		Tracker (int value, Tracker *pair);
+		Tracker (int value, std::list<Tracker*> pair);
 		~Tracker();
 		Tracker(const Tracker& other);
 		Tracker operator= (const Tracker& other);
 
 		void setPair(Tracker *p);
+		void popPair();
 
 		int getValue();
 		Tracker* getPair();
+		int	getSize();
+		std::list<Tracker *> getList();
 
 		void print() const;
+		void printPairs() const;
 
 };
 
@@ -56,40 +63,47 @@ template <class Container> void parse_input(Container& container, std::string el
 	}
 }
 
-template <class Container> void	in_sort(Container& c) {
+template <class Container> void	in_sort(Container& c, const std::string type) {
 	long long start = current_time_ns();
 	Container res = sort_recurs(c);
 	long long end = current_time_ns();
 	long long us = (end - start) / 1000;
 	long long ns = (end-start) % 1000;
-	std::string type = "vector/deque";
+	if (type == "vector") {
+	std::cout << "After:	";
+	for (typename Container::iterator it = res.begin(); it != res.end(); ++it)
+		std::cout << " " << (*it)->getValue();
+	std::cout << std::endl;
+	}
 	std::cout << "Time to process a range of " << c.size() << " elements with std::" << type << " : "
 		<< us << "." << ns << " us" << std::endl;
-	print_container(res);
+	std::cout << "Number of comparisons " << comparisons << std::endl;
+	comparisons = 0;
 }
 
 template <class PtrContainer> void binary_insert(PtrContainer& res, typename PtrContainer::size_type end_index, Tracker* to_insert) {
     typedef typename PtrContainer::size_type size_type;
-    // Defensive checks
     if (!to_insert)
-		throw std::runtime_error("binary_insert_ptr_bounded: null to_insert");
-    if (end_index > res.size()) end_index = res.size();
-
+		return ;
     size_type lo = 0, hi = end_index;
     while (lo < hi) {
         size_type mid = lo + (hi - lo) / 2;
-        if (res[mid]->getValue() < to_insert->getValue()) lo = mid + 1;
-        else                                              hi = mid;
+        if (res[mid]->getValue() < to_insert->getValue())
+			lo = mid + 1;
+        else
+			hi = mid;
+		comparisons ++;
     }
-    res.insert(res.begin() + lo, to_insert); // insert the POINTER
+    res.insert(res.begin() + lo, to_insert);
+	//std::cout << "Inserted " << to_insert->getValue() << " with binary insertion" << std::endl;
 }
 
-template <class Container> typename Container::iterator get_it(Tracker* rit, Container c) {
-	for (typename Container::iterator it = c.begin(); it != c.end(); ++it) {
-		if ((*it)->getValue() == rit->getValue() && (*it)->getPair() == rit->getPair())
-			return it;
-	}
-	throw std::runtime_error("Messed up something really bad");
+template <class Container> unsigned int get_until(int k, Container res) {
+	unsigned int jsth_limit = jacobstahl(k) + jacobstahl(k-1) - 1;
+	if (jsth_limit > res.size())
+		return res.size();
+	else
+		return jsth_limit;
 }
 
 template <class Container> Container sort_recurs(Container& c) {
@@ -98,8 +112,16 @@ template <class Container> Container sort_recurs(Container& c) {
 	int	i = 0;
 	Tracker *first = NULL;
 
-	if (c.size() <= 1) 
+	if (c.size() <= 1) {
+		/*std::list<Tracker *> lst = (*(c.begin()))->getList();
+		std::cout << "pairs of the highest:" ;
+		for (std::list<Tracker *>::iterator it = lst.begin(); it != lst.end(); ++it) {
+			if (*it)
+    			std::cout << (*it)->getValue() << " ";
+		}
+		std::cout << std::endl;*/
 		return c;
+	}
 	for (typename Container::iterator it = c.begin(); it != c.end(); ++it) {
 		switch (i){
 			case 0:
@@ -110,45 +132,52 @@ template <class Container> Container sort_recurs(Container& c) {
 				if(first->getValue() > (*it)->getValue()){
 					first->setPair(&(**it));
 					high.insert(high.end(), first);
-					//low.insert(high.end(), *it);
 				}
 				else {
 					(*it)->setPair(&(*first));
 					high.insert(high.end(), *it);
-					//low.insert(high.end(), first);
 
 				}
-				std::cout << "Comparison" << std::endl;
+				comparisons ++;
 				i = 0;
 				break ;
 		}
 	}
 	Container res = sort_recurs(high);
 	Container highs_sorted = res;
-	res.insert (res.begin(), (*res.begin())->getPair());
-	print_container(res);
+	Tracker* f = *res.begin();
+	res.insert (res.begin(), f->getPair());
+	if (f->getSize() > 0)
+		f->popPair();
 	int k = 1;
-	//int inserted = 0;
 	while(jacobstahl(k - 1) < highs_sorted.size()) {
 		typename Container::reverse_iterator iter_start;
-		std::cout << "0" << std::endl;
 		if (jacobstahl(k) > highs_sorted.size())
-			iter_start = highs_sorted.rbegin();
+		{
+			if (i == 1) {
+				binary_insert(res, get_until(k, res), c.back());
+				i = 0;
+			}
+			iter_start = highs_sorted.rbegin(); 
+		}
 		else {
-			std::cout << "1" << std::endl;
-			iter_start = highs_sorted.rend() - jacobstahl(k) + 1;
-			std::cout << "2" << std::endl;
+			iter_start = highs_sorted.rend() - jacobstahl(k);
 		}
-		std::cout << "3" << std::endl;
-		print_container(res);
-		for (typename Container::reverse_iterator rit = iter_start; rit != highs_sorted.rend() - jacobstahl(k - 1) + 1; ++rit) {
-			//std::cout << "To insert upper pair:" << (*rit)->getValue() <<", insert value:" << (*rit)->getPair()->getValue() << std::endl;;
-			binary_insert(res, res.size(), (*rit)->getPair());
+		for (typename Container::reverse_iterator rit = iter_start; rit != highs_sorted.rend() - jacobstahl(k - 1); ++rit) {
+			//std::cout << "[]" << (*rit)->getValue();
+			binary_insert(res, get_until(k, res), (*rit)->getPair());
+			if ((*rit)->getSize() > 0 ) {
+				//std::cout << "To insert upper pair:" << (*rit)->getPair()->getValue() << std::endl;
+				(*rit)->popPair();
+			}
 		}
-		std::cout << "4" << std::endl;
-		print_container(res);
 		k++;
 	}
+	if (i == 1) {
+		binary_insert(res, get_until(k, res), c.back());
+			i = 0;
+	}
+	//print_container(res);
 	return (res);
 }
 

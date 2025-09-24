@@ -1,10 +1,12 @@
 #include "PmergeMe.hpp"
 
-Tracker::Tracker(): _value(0), _pair(NULL) {};
+std::size_t comparisons = 0;
 
-Tracker::Tracker (int value): _value(value), _pair(NULL) {}
+Tracker::Tracker(): _value(0), _pair() {};
 
-Tracker::Tracker (int value, Tracker *pair) : _value(value), _pair(pair) {}
+Tracker::Tracker (int value): _value(value), _pair() {}
+
+Tracker::Tracker (int value, std::list<Tracker *> pair) : _value(value), _pair(pair) {}
 
 Tracker::~Tracker() {}
 	
@@ -19,7 +21,11 @@ Tracker Tracker::operator= (const Tracker& other) {
 }
 
 void Tracker::setPair(Tracker *p){
-	_pair = p;
+	_pair.push_front(p);
+}
+
+void Tracker::popPair() {
+	_pair.pop_front();
 }
 
 int Tracker::getValue() {
@@ -27,11 +33,29 @@ int Tracker::getValue() {
 }
 
 Tracker* Tracker::getPair() {
+	return (_pair.front());
+}
+
+int	Tracker::getSize() {
+	return (_pair.size());
+}
+
+std::list<Tracker *> Tracker::getList() {
 	return (_pair);
 }
 
 void Tracker::print() const {
-	std::cout << "Value: " << _value << ", Pair: " << _pair << std::endl;
+	std::cout << "Value: " << _value << ", Pair: " << _pair.front() << std::endl;
+}
+
+void Tracker::printPairs() const {
+	std::list<Tracker *> lst = _pair;
+	std::cout << "Pairs of " << _value << ":" ;
+	for (std::list<Tracker *>::iterator it = lst.begin(); it != lst.end(); ++it) {
+		if (*it)
+    		std::cout << (*it)->getValue() << " ";
+	}
+	std::cout << std::endl;
 }
 
 long long current_time_ns() {
