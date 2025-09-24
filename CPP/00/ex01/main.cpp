@@ -13,34 +13,34 @@
 #include "main.hpp"
 
 int main() {
-    PhoneBook phonebook;
-    std::string input;
+	PhoneBook phonebook;
+	std::string input;
 
-    while (1)
-    {
-        do
-        {
-            std::cout << std::endl << "Use one of the commands: ADD, SEARCH, EXIT" << std::endl;
+	while (1)
+	{
+	    do
+	    {
+	        std::cout << std::endl << "Use one of the commands: ADD, SEARCH, EXIT" << std::endl;
 	        if (!std::getline(std::cin, input))
-            {
+	        {
 		        std::cin.clear();
 		        std::cin.ignore(0, '\n');
 		        std::freopen("/dev/tty", "r", stdin);
 		        std::cerr << "\nInput interrupted. Leaving...\n";
-                return (1);
+	            return (1);
 	        }
-        } while (is_empty(input) == 1);
-        if (input.compare("ADD") == 0)
-        {
-            phonebook.add_contact();
-            phonebook.set_size();
-        }
-        else if (input.compare("SEARCH") == 0)
-            phonebook.search_contacts();
-        else if (input.compare("EXIT") == 0)
-            break;
-    }
-    return 0;
+	    } while (is_empty(input) == 1);
+	    if (input.compare("ADD") == 0)
+	    {
+	        phonebook.add_contact();
+	        phonebook.set_size();
+	    }
+	    else if (input.compare("SEARCH") == 0)
+	        phonebook.search_contacts();
+	    else if (input.compare("EXIT") == 0)
+	        break;
+	}
+	return 0;
 }
 
 

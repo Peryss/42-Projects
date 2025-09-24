@@ -28,8 +28,8 @@ int main()
 
 
 	delete i;
-    delete j;
-    delete meta;
+	delete j;
+	delete meta;
 
 	std::cout << "--------------------------------" << std::endl;
 
@@ -45,9 +45,9 @@ int main()
 
 	delete y;
 	delete x;
-    delete base;
+	delete base;
 
 	
 
-    return 0;
+	return 0;
 }

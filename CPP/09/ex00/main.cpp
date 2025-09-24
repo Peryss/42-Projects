@@ -14,9 +14,16 @@
 
 int main(int argc, char** argv)
 {
-	if (argc != 2 || bad_filename(argv[1]))
+	if (argc != 2 || bad_filename(argv[1])) {
 		std::cerr << "Please provide a filename" << std::endl;
+		return 0;
+	}
+	try {
 	std::map<Date, float> rates;
 	loadExchangeRates(rates);
+	loadInput(argv[1], rates);
+	} catch(const std::exception &e) {
+		std::cerr << "Error: " << e.what() << std:: endl;
+	}
 
 }

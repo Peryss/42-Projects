@@ -14,8 +14,8 @@
 
 Cat::Cat(): brain(new Brain())
 {
-    this->type = "Cat";
-    std::cout << "Cat created\n";
+	this->type = "Cat";
+	std::cout << "Cat created\n";
 }
 
 Cat::Cat(const Cat& other) : AAnimal(other), brain(new Brain(*other.brain))
@@ -40,12 +40,12 @@ Cat& Cat::operator=(const Cat& other)
 Cat::~Cat()
 {
 	delete brain;
-    std::cout << "Cat destroyed\n";
+	std::cout << "Cat destroyed\n";
 }
 
 void Cat::makeSound() const
 {
-    std::cout << "Meow\n";
+	std::cout << "Meow\n";
 }
 
 void Cat::setIdeas(const std::string idea)

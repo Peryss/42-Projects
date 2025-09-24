@@ -78,7 +78,7 @@ float Fixed::toFloat( void ) const
 // to int
 int Fixed::toInt() const
 {
-    return (this->value >> this->fractionalbits);
+	return (this->value >> this->fractionalbits);
 }
 
 // << overload

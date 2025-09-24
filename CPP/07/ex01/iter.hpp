@@ -34,7 +34,7 @@ template <typename T> void add5(T& item) {
 }
 
 template <typename T> void print_elem(const T& elem) {
-    std::cout << elem << " ";
+	std::cout << elem << " ";
 }
 
 #endif

@@ -25,9 +25,9 @@ Cure::Cure(const Cure& other) : AMateria(other)
 Cure& Cure::operator=(const Cure& other)
 {
 	//std::cout << "Cure copy operator called" << std::endl;
-    if (this != &other)
-        this->_type = other._type;
-    return *this;
+	if (this != &other)
+	    this->_type = other._type;
+	return *this;
 }
 
 Cure::~Cure()
@@ -38,10 +38,10 @@ Cure::~Cure()
 AMateria* Cure::clone() const
 {
 	//std::cout << "Cure clone() called, deep copy made" << std::endl;
-    return new Cure(*this); // deep copy
+	return new Cure(*this); // deep copy
 }
 
 void Cure::use(ICharacter& target)
 {
-    std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
+	std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
 }

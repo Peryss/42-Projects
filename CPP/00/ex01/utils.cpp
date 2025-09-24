@@ -31,18 +31,18 @@ bool get_input(const std::string &prompt, std::string &input)
 
 void printable(std::string str)
 {
-    std::string print;
+	std::string print;
 
-    if (str.length() < 11)
-    {
-        for(int i = 0; i < 10 - (int)str.length(); i++)
-            std::cout <<  " ";
-        std::cout << str;
-    }
-    else
-    {
-        std::cout << str.substr(0, 9) + ".";
-    }
+	if (str.length() < 11)
+	{
+	    for(int i = 0; i < 10 - (int)str.length(); i++)
+	        std::cout <<  " ";
+	    std::cout << str;
+	}
+	else
+	{
+	    std::cout << str.substr(0, 9) + ".";
+	}
 }
 
 bool	is_empty(std::string str)
@@ -50,7 +50,7 @@ bool	is_empty(std::string str)
 	if (str.empty() == 1)
 		return (1);
 	for ( std::string::iterator i = str.begin(); i != str.end(); ++i)
-    	if (std::isspace((unsigned char)*i) == 0)
+		if (std::isspace((unsigned char)*i) == 0)
 			return (0);
 	return (1);
 }

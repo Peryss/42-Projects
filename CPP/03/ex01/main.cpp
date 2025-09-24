@@ -35,22 +35,22 @@ int main()
 
 	std::cout << "-----------------------" << std::endl;
 
-    ScavTrap scav("ABC00");
+	ScavTrap scav("ABC00");
 
-    scav.attack("Bandit");
+	scav.attack("Bandit");
 	scav.guardGate(); //special ability
 
-    for (int i = 0; i < 51; ++i)  // Try attacking more times than available energy
-    {    
+	for (int i = 0; i < 51; ++i)  // Try attacking more times than available energy
+	{    
 		scav.attack("Training Dummy");
 	}
 	std::cout << "-----------------------" << std::endl;
 	
 	scav.guardGate(); //special ability
 
-    scav.takeDamage(200);  // Kill the robot
-    scav.attack("Enemy");
+	scav.takeDamage(200);  // Kill the robot
+	scav.attack("Enemy");
 
-    scav.beRepaired(50); //already dead
-    scav.guardGate(); //special ability
+	scav.beRepaired(50); //already dead
+	scav.guardGate(); //special ability
 }

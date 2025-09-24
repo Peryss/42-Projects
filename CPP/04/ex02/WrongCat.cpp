@@ -14,8 +14,8 @@
 
 WrongCat::WrongCat()
 {
-    this->type = "WrongCat";
-    std::cout << "WrongCat created\n";
+	this->type = "WrongCat";
+	std::cout << "WrongCat created\n";
 }
 
 WrongCat::WrongCat(const WrongCat& other) : WrongAnimal(other)
@@ -33,10 +33,10 @@ WrongCat& WrongCat::operator=(const WrongCat& other)
 
 WrongCat::~WrongCat()
 {
-    std::cout << "WrongCat destroyed\n";
+	std::cout << "WrongCat destroyed\n";
 }
 
 void WrongCat::makeSound() const
 {
-    std::cout << "Meow\n";
+	std::cout << "Meow\n";
 }

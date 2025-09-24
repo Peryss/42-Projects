@@ -14,8 +14,8 @@
 
 Dog::Dog()
 {
-    this->type = "Dog";
-    std::cout << "Dog created\n";
+	this->type = "Dog";
+	std::cout << "Dog created\n";
 }
 
 Dog::Dog(const Dog& other) : Animal(other)
@@ -34,10 +34,10 @@ Dog& Dog::operator=(const Dog& other)
 
 Dog::~Dog()
 {
-    std::cout << "Dog destroyed\n";
+	std::cout << "Dog destroyed\n";
 }
 
 void Dog::makeSound() const
 {
-    std::cout << "Wau\n";
+	std::cout << "Wau\n";
 }

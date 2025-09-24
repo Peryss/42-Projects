@@ -17,58 +17,58 @@
 #include "PresidentialPardonForm.hpp"
 
 int main() {
-    try {
-        // --- ShrubberyCreationForm tests ---
-        std::cout << std::endl << "== ShrubberyCreationForm tests ==" << std::endl;
-        Bureaucrat bob("Bob", 100);           // ok for sign(145) & exec(137)
-        ShrubberyCreationForm garden("garden");
+	try {
+	    // --- ShrubberyCreationForm tests ---
+	    std::cout << std::endl << "== ShrubberyCreationForm tests ==" << std::endl;
+	    Bureaucrat bob("Bob", 100);           // ok for sign(145) & exec(137)
+	    ShrubberyCreationForm garden("garden");
 
-        // 1) Execute before sign -> expect NotSignedException
-        try {
-            bob.executeForm(garden);
-        } catch (const std::exception& e) {
-            std::cout << "[expected] shrubbery not signed: " << e.what() << "\n";
-        }
+	    // 1) Execute before sign -> expect NotSignedException
+	    try {
+	        bob.executeForm(garden);
+	    } catch (const std::exception& e) {
+	        std::cout << "[expected] shrubbery not signed: " << e.what() << "\n";
+	    }
 
-        // 2) Sign then execute -> should create garden_shrubbery file
-        bob.signAForm(garden);
-        try {
-            bob.executeForm(garden);
-            std::cout << "Shrubbery created: garden_shrubbery\n";
-        } catch (const std::exception& e) {
-            std::cout << "[unexpected] shrubbery exec failed: " << e.what() << "\n";
-        }
+	    // 2) Sign then execute -> should create garden_shrubbery file
+	    bob.signAForm(garden);
+	    try {
+	        bob.executeForm(garden);
+	        std::cout << "Shrubbery created: garden_shrubbery\n";
+	    } catch (const std::exception& e) {
+	        std::cout << "[unexpected] shrubbery exec failed: " << e.what() << "\n";
+	    }
 
-        // 3) Too-low grade execute
-        Bureaucrat joe("Joe", 150);
+	    // 3) Too-low grade execute
+	    Bureaucrat joe("Joe", 150);
 
-        joe.executeForm(garden);
+	    joe.executeForm(garden);
 
-        // --- RobotomyRequestForm tests ---
-        std::cout << std::endl << "== RobotomyRequestForm tests ==" << std::endl;
-        Bureaucrat alice("Alice", 45);        // sign<=72, exec<=45 -> perfect
-        RobotomyRequestForm robo("Marvin");
+	    // --- RobotomyRequestForm tests ---
+	    std::cout << std::endl << "== RobotomyRequestForm tests ==" << std::endl;
+	    Bureaucrat alice("Alice", 45);        // sign<=72, exec<=45 -> perfect
+	    RobotomyRequestForm robo("Marvin");
 
-        // 1) Execute before sign -> expect NotSignedException
-        alice.executeForm(robo);
+	    // 1) Execute before sign -> expect NotSignedException
+	    alice.executeForm(robo);
 
-        // 2) Sign then execute several times to observe ~50% success/fail
-        alice.signAForm(robo);
-        for (int i = 0; i < 10; ++i)
+	    // 2) Sign then execute several times to observe ~50% success/fail
+	    alice.signAForm(robo);
+	    for (int i = 0; i < 10; ++i)
 		{
-            alice.executeForm(robo);
-        }
+	        alice.executeForm(robo);
+	    }
 
-        // 3) Too-low grade execute
-    	joe.executeForm(robo); // grade 150 -> should fail
+	    // 3) Too-low grade execute
+		joe.executeForm(robo); // grade 150 -> should fail
 
-        // 4) Too-low grade sign (optional)
-        Bureaucrat dave("Dave", 100);         // >72, cannot sign robotomy
-        try {
-            dave.signAForm(robo);              // depending on your signForm, this prints or throws
-        } catch (const std::exception& e) {
-            std::cout << "[expected] robotomy low-grade sign: " << e.what() << "\n";
-        }
+	    // 4) Too-low grade sign (optional)
+	    Bureaucrat dave("Dave", 100);         // >72, cannot sign robotomy
+	    try {
+	        dave.signAForm(robo);              // depending on your signForm, this prints or throws
+	    } catch (const std::exception& e) {
+	        std::cout << "[expected] robotomy low-grade sign: " << e.what() << "\n";
+	    }
 
 		std::cout << std::endl << "== PresidentialPardonForm tests ==" << std::endl;
 		PresidentialPardonForm pardon("Arthur Dent");
@@ -88,9 +88,9 @@ int main() {
 		Bureaucrat low("Low", 150);
 		low.executeForm(pardon);
 
-    } catch (const std::exception& e) {
-        std::cerr << "Fatal error: " << e.what() << "\n";
-        return 1;
-    }
-    return 0;
+	} catch (const std::exception& e) {
+	    std::cerr << "Fatal error: " << e.what() << "\n";
+	    return 1;
+	}
+	return 0;
 }

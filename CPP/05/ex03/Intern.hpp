@@ -20,17 +20,17 @@ class AForm;
 
 class Intern {
 public:
-    Intern();
-    Intern(const Intern&);
-    Intern& operator=(const Intern&);
-    ~Intern();
+	Intern();
+	Intern(const Intern&);
+	Intern& operator=(const Intern&);
+	~Intern();
 
-    AForm* makeForm(const std::string& formName, const std::string& target) const;
+	AForm* makeForm(const std::string& formName, const std::string& target) const;
 
-    class UnknownFormException : public std::exception {
-    public:
-        virtual const char* what() const throw();
-    };
+	class UnknownFormException : public std::exception {
+	public:
+	    virtual const char* what() const throw();
+	};
 };
 
 #endif

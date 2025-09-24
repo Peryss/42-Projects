@@ -79,7 +79,7 @@ float Fixed::toFloat( void ) const
 // to int
 int Fixed::toInt() const
 {
-    return (this->value >> this->fractionalbits);
+	return (this->value >> this->fractionalbits);
 }
 
 //----------------OVERLOADS------------------
@@ -93,46 +93,46 @@ std::ostream& operator<<(std::ostream& os, const Fixed& fixed)
 
 bool Fixed::operator<(const Fixed& other) const
 {
-    return this->getRawBits() < other.getRawBits();
+	return this->getRawBits() < other.getRawBits();
 }
 
 bool Fixed::operator>(const Fixed& other) const
 {
-    return this->getRawBits() > other.getRawBits();
+	return this->getRawBits() > other.getRawBits();
 }
 
 bool Fixed::operator<=(const Fixed& other) const
 {
-    return this->getRawBits() <= other.getRawBits();
+	return this->getRawBits() <= other.getRawBits();
 }
 
 bool Fixed::operator>=(const Fixed& other) const
 {
-    return this->getRawBits() >= other.getRawBits();
+	return this->getRawBits() >= other.getRawBits();
 }
 
 bool Fixed::operator==(const Fixed& other) const
 {
-    return this->getRawBits() == other.getRawBits();
+	return this->getRawBits() == other.getRawBits();
 }
 
 bool Fixed::operator!=(const Fixed& other) const
 {
-    return this->getRawBits() != other.getRawBits();
+	return this->getRawBits() != other.getRawBits();
 }
 
 Fixed Fixed::operator+(const Fixed& other) const
 {
-    Fixed result;
-    result.setRawBits(this->getRawBits() + other.getRawBits());
-    return result;
+	Fixed result;
+	result.setRawBits(this->getRawBits() + other.getRawBits());
+	return result;
 }
 
 Fixed Fixed::operator-(const Fixed& other) const
 {
-    Fixed result;
-    result.setRawBits(this->getRawBits() - other.getRawBits());
-    return result;
+	Fixed result;
+	result.setRawBits(this->getRawBits() - other.getRawBits());
+	return result;
 }
 
 Fixed Fixed::operator*(const Fixed& other) const

@@ -25,9 +25,9 @@ Ice::Ice(const Ice& other) : AMateria(other)
 Ice& Ice::operator=(const Ice& other)
 {
 	//std::cout << "Ice copy operator called" << std::endl;
-    if (this != &other)
-        this->_type = other._type;
-    return *this;
+	if (this != &other)
+	    this->_type = other._type;
+	return *this;
 }
 
 Ice::~Ice()
@@ -39,10 +39,10 @@ Ice::~Ice()
 AMateria* Ice::clone() const
 {
 	//std::cout << "Ice clone() called, deep copy made" << std::endl;
-    return new Ice(*this); // deep copy
+	return new Ice(*this); // deep copy
 }
 
 void Ice::use(ICharacter& target)
 {
-    std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
+	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
 }

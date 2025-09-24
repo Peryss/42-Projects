@@ -37,51 +37,51 @@ int main()
 	std::cout << "-----------------------" << std::endl;
 	std::cout << "\n F-------ScavTrap-------- ===\n";
 
-    ScavTrap scav("ABC00");
+	ScavTrap scav("ABC00");
 
-    scav.attack("Bandit");
+	scav.attack("Bandit");
 	scav.guardGate(); //special ability
 
-    for (int i = 0; i < 51; ++i)  // Try attacking more times than available energy
-    {    
+	for (int i = 0; i < 51; ++i)  // Try attacking more times than available energy
+	{    
 		scav.attack("Training Dummy");
 	}
 	std::cout << "-----------------------" << std::endl;
 	
 	scav.guardGate(); //special ability
 
-    scav.takeDamage(200);  // Kill the robot
-    scav.attack("Enemy");
+	scav.takeDamage(200);  // Kill the robot
+	scav.attack("Enemy");
 
-    scav.beRepaired(50); //already dead
-    scav.guardGate(); //special ability
+	scav.beRepaired(50); //already dead
+	scav.guardGate(); //special ability
 
 	std::cout << "-----------------------" << std::endl;
 
 	std::cout << "\n F-------FragTrap-------- ===\n";
-    FragTrap frag("FR4G-TP");
-    frag.attack("Bandit");
+	FragTrap frag("FR4G-TP");
+	frag.attack("Bandit");
 
-    frag.highFivesGuys();
-    frag.beRepaired(30);
+	frag.highFivesGuys();
+	frag.beRepaired(30);
 
-    std::cout << "\n=== Depleting energy ===\n";
-    for (int i = 0; i < 50; ++i) {
-        frag.attack("Dummy");
-    }
+	std::cout << "\n=== Depleting energy ===\n";
+	for (int i = 0; i < 50; ++i) {
+	    frag.attack("Dummy");
+	}
 	std::cout << "-----------------------" << std::endl;
 	frag.highFivesGuys();
-    frag.attack("Dummy");
-    frag.takeDamage(200);
+	frag.attack("Dummy");
+	frag.takeDamage(200);
 
-    frag.attack("Zombie");
-    frag.beRepaired(50);
-    frag.highFivesGuys();
+	frag.attack("Zombie");
+	frag.beRepaired(50);
+	frag.highFivesGuys();
 
 	std::cout << "-----------------------" << std::endl;
-    FragTrap fragCopy(frag); // will copy dead bot
-    FragTrap fragAssigned;
-    fragAssigned = frag;
+	FragTrap fragCopy(frag); // will copy dead bot
+	FragTrap fragAssigned;
+	fragAssigned = frag;
 
 	std::cout << "-----------------------" << std::endl;
 	std::cout << "\n F-------DiamondTrap-------- ===\n";

@@ -16,19 +16,19 @@
 
 int main()
 {
-    Harl harl;
+	Harl harl;
 
-    harl.complain("DEBUG");
+	harl.complain("DEBUG");
 
-    harl.complain("INFO");
+	harl.complain("INFO");
 
-    harl.complain("WARNING");
+	harl.complain("WARNING");
 
-    harl.complain("ERROR");
+	harl.complain("ERROR");
 
-    harl.complain("SILLY");
+	harl.complain("SILLY");
 
 	harl.complain("");
 
-    return 0;
+	return 0;
 }

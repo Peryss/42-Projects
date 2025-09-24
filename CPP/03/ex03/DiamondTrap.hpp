@@ -25,7 +25,7 @@ class DiamondTrap: virtual public FragTrap, virtual public ScavTrap
 		DiamondTrap(const std::string& name);
 	    DiamondTrap(const DiamondTrap& other);
 	    DiamondTrap& operator=(const DiamondTrap& other);
-    	~DiamondTrap();
+		~DiamondTrap();
 	
 		void whoAmI();
 		using ScavTrap::attack;

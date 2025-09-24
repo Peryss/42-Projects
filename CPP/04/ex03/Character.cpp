@@ -16,24 +16,24 @@ Character::Character(): _name("No name")
 {
 	//std::cout << "Character default constructor called" << std::endl;
 	for (int i = 0; i < 4; ++i)
-    	_inventory[i] = NULL;
+		_inventory[i] = NULL;
 }
 
 Character::Character(std::string const& name): _name(name)
 {
 	//std::cout << "Character constructor called" << std::endl;
 	for (int i = 0; i < 4; ++i)
-    	_inventory[i] = NULL;
+		_inventory[i] = NULL;
 }
 
 Character::Character(const Character& other)
 {
 	for (int i = 0; i < 4; ++i) {
-        if (other._inventory[i])
-            _inventory[i] = other._inventory[i]->clone(); // Deep copy
-        else
-            _inventory[i] = NULL;
-    }
+	    if (other._inventory[i])
+	        _inventory[i] = other._inventory[i]->clone(); // Deep copy
+	    else
+	        _inventory[i] = NULL;
+	}
 	//std::cout << "Character copy constructor called" << std::endl;
 	*this = other;
 }
@@ -41,25 +41,25 @@ Character::Character(const Character& other)
 Character& Character::operator=(const Character& other)
 {
 	 if (this != &other)
-    {
-        _name = other._name;
-        for (int i = 0; i < 4; ++i)
-        {
-            // Clean up existing Materia to avoid memory leaks
-            if (_inventory[i])
-            {
-                delete _inventory[i];
-                _inventory[i] = NULL;
-            }
-            // Deep copy: clone Materia if it exists
-            if (other._inventory[i])
-                _inventory[i] = other._inventory[i]->clone();
-            else
-                _inventory[i] = NULL;
-        }
-    }
-    //std::cout << "Character deep copied" << std::endl;
-    return *this;
+	{
+	    _name = other._name;
+	    for (int i = 0; i < 4; ++i)
+	    {
+	        // Clean up existing Materia to avoid memory leaks
+	        if (_inventory[i])
+	        {
+	            delete _inventory[i];
+	            _inventory[i] = NULL;
+	        }
+	        // Deep copy: clone Materia if it exists
+	        if (other._inventory[i])
+	            _inventory[i] = other._inventory[i]->clone();
+	        else
+	            _inventory[i] = NULL;
+	    }
+	}
+	//std::cout << "Character deep copied" << std::endl;
+	return *this;
 }
 
 Character::~Character()
@@ -83,13 +83,13 @@ void Character::equip(AMateria* m)
 	}
 	for (int i = 0; i < 4; ++i)
 	{
-        if (!_inventory[i])
+	    if (!_inventory[i])
 		{
-            _inventory[i] = m;
+	        _inventory[i] = m;
 			std::cout << "Materia equpped to slot " << i << std::endl;
-            return;
-        }
-    }
+	        return;
+	    }
+	}
 }
 
 void Character::unequip(int idx)

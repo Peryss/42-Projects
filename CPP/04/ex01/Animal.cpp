@@ -49,5 +49,5 @@ void Animal::makeSound() const
 
 std::string Animal::getType() const
 {
-    return this->type;
+	return this->type;
 }

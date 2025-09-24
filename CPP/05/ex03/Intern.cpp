@@ -23,8 +23,8 @@ Intern& Intern::operator=(const Intern&) { return *this; }
 Intern::~Intern() {}
 
 struct FormSpec {
-    const char* name;
-    AForm* (*factory)(const std::string& target);
+	const char* name;
+	AForm* (*factory)(const std::string& target);
 };
 
 static AForm* createShrubbery(const std::string& target)
@@ -41,31 +41,31 @@ static AForm* createPardon(const std::string& target)
 }
 
 static std::string toLowerStr(const std::string& s) {
-    std::string out; out.reserve(s.size());
-    for (std::string::size_type i = 0; i < s.size(); ++i)
-        out.push_back(static_cast<char>(std::tolower(static_cast<unsigned char>(s[i]))));
-    return out;
+	std::string out; out.reserve(s.size());
+	for (std::string::size_type i = 0; i < s.size(); ++i)
+	    out.push_back(static_cast<char>(std::tolower(static_cast<unsigned char>(s[i]))));
+	return out;
 }
 
 AForm* Intern::makeForm(const std::string& formName, const std::string& target) const 
 {
-    static const FormSpec specs[] = {
-        { "presidential pardon", &createPardon   },
-        { "robotomy request",    &createRobotomy },
-        { "shrubbery creation",  &createShrubbery}
-    };
+	static const FormSpec specs[] = {
+	    { "presidential pardon", &createPardon   },
+	    { "robotomy request",    &createRobotomy },
+	    { "shrubbery creation",  &createShrubbery}
+	};
 
-    const std::string key = toLowerStr(formName);
-    for (size_t i = 0; i < sizeof(specs) / sizeof(specs[0]); ++i) {
-        if (key == specs[i].name) {
-            std::cout << "Intern creates " << specs[i].name << std::endl;
-            return specs[i].factory(target);
-        }
-    }
-    throw UnknownFormException();
+	const std::string key = toLowerStr(formName);
+	for (size_t i = 0; i < sizeof(specs) / sizeof(specs[0]); ++i) {
+	    if (key == specs[i].name) {
+	        std::cout << "Intern creates " << specs[i].name << std::endl;
+	        return specs[i].factory(target);
+	    }
+	}
+	throw UnknownFormException();
 }
 
 const char* Intern::UnknownFormException::what() const throw()
 {
-    return "Intern cannot create form (Unknown form type)";
+	return "Intern cannot create form (Unknown form type)";
 }

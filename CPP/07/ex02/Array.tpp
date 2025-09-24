@@ -38,11 +38,11 @@ template <typename T> Array<T> Array<T>::operator= (const Array& other) {
 
 template <typename T> Array<T>::Array (const Array&other) : _size(other._size), _data(0){
 	if (_size > 0) {
-        _data = new T[_size];
-        for (unsigned int i = 0; i < _size; ++i) {
-            _data[i] = other._data[i];
-        }
-    }
+	    _data = new T[_size];
+	    for (unsigned int i = 0; i < _size; ++i) {
+	        _data[i] = other._data[i];
+	    }
+	}
 }
 
 template <typename T> Array<T>::~Array() {

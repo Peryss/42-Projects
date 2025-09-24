@@ -14,8 +14,8 @@
 
 Cat::Cat()
 {
-    this->type = "Cat";
-    std::cout << "Cat created\n";
+	this->type = "Cat";
+	std::cout << "Cat created\n";
 }
 
 Cat::Cat(const Cat& other) : Animal(other)
@@ -34,10 +34,10 @@ Cat& Cat::operator=(const Cat& other)
 
 Cat::~Cat()
 {
-    std::cout << "Cat destroyed\n";
+	std::cout << "Cat destroyed\n";
 }
 
 void Cat::makeSound() const
 {
-    std::cout << "Meow\n";
+	std::cout << "Meow\n";
 }

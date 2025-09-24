@@ -54,9 +54,9 @@ std::string Contact::get_darkest_secret()
 
 void    Contact::print_contact()
 {
-    std::cout << "First name    :" << get_first_name() << std::endl;
-    std::cout << "Last name     :" << get_last_name() << std::endl;
-    std::cout << "Nickname      :" << get_nickname() << std::endl;
-    std::cout << "Phone number  :" << get_phone_number() << std::endl;
-    std::cout << "Darkest secret:" << get_darkest_secret() << std::endl;
+	std::cout << "First name    :" << get_first_name() << std::endl;
+	std::cout << "Last name     :" << get_last_name() << std::endl;
+	std::cout << "Nickname      :" << get_nickname() << std::endl;
+	std::cout << "Phone number  :" << get_phone_number() << std::endl;
+	std::cout << "Darkest secret:" << get_darkest_secret() << std::endl;
 }

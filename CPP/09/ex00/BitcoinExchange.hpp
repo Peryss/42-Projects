@@ -45,5 +45,6 @@ class Date {
 
 bool	bad_filename(char* in);
 void	loadExchangeRates(std::map<Date, float>& map);
+void	loadInput(char* filename, std::map<Date, float> rates);
 
 #endif

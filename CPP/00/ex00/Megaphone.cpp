@@ -28,7 +28,7 @@ int main(int argc, char **argv)
 	{
 		text = (std::string) argv[j];
 		for ( std::string::iterator i = text.begin(); i != text.end(); ++i)
-    		std::cout << (unsigned char)(std::toupper(*i));
+			std::cout << (unsigned char)(std::toupper(*i));
 		j++;
 	}
 	std::cout << std::endl;

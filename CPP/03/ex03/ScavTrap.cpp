@@ -15,8 +15,8 @@
 ScavTrap::ScavTrap(): ClapTrap()
 {
 	hp = 100;
-    energy= 50;
-    ad = 20;
+	energy= 50;
+	ad = 20;
 	std::cout << name << " ScavTrap " << " default constructed" << std::endl;
 }
 
@@ -24,9 +24,9 @@ ScavTrap::ScavTrap(): ClapTrap()
 ScavTrap::ScavTrap(std::string n): ClapTrap(n)
 {
 	hp = 100;
-    energy= 50;
-    ad = 20;
-    std::cout << "ScavTrap " << name << " constructed" << std::endl;
+	energy= 50;
+	ad = 20;
+	std::cout << "ScavTrap " << name << " constructed" << std::endl;
 }
 
 ScavTrap::ScavTrap(const ScavTrap& other): ClapTrap(other)

@@ -15,8 +15,8 @@
 FragTrap::FragTrap(): ClapTrap()
 {
 	hp = 100;
-    energy= 100;
-    ad = 30;
+	energy= 100;
+	ad = 30;
 	std::cout << name << " FragTrap " << " default constructed" << std::endl;
 }
 
@@ -24,9 +24,9 @@ FragTrap::FragTrap(): ClapTrap()
 FragTrap::FragTrap(std::string n): ClapTrap(n)
 {
 	hp = 100;
-    energy= 100;
-    ad = 30;
-    std::cout << "FragTrap " << name << " constructed" << std::endl;
+	energy= 100;
+	ad = 30;
+	std::cout << "FragTrap " << name << " constructed" << std::endl;
 }
 
 FragTrap::FragTrap(const FragTrap& other): ClapTrap(other)

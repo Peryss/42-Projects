@@ -13,48 +13,48 @@
 #include "easyfind.hpp"
 
 int main() {
-    try {
+	try {
 		std::cout << "Testing with vector:" << std::endl;
-        std::vector<int> v;
-        v.push_back(1);
-        v.push_back(2);
-        v.push_back(3);
-        v.push_back(4);
+	    std::vector<int> v;
+	    v.push_back(1);
+	    v.push_back(2);
+	    v.push_back(3);
+	    v.push_back(4);
 
-        std::cout << "Searching 3 in vector..." << std::endl;
-        std::vector<int>::iterator it = easyfind(v, 3);
-        std::cout << "Found: " << *it << std::endl;
+	    std::cout << "Searching 3 in vector..." << std::endl;
+	    std::vector<int>::iterator it = easyfind(v, 3);
+	    std::cout << "Found: " << *it << std::endl;
 
-        std::cout << "Searching 42 in vector..." << std::endl;
-        it = easyfind(v, 42);
-        std::cout << "Found: " << *it << std::endl;
-    }
-    catch (const NotFoundException& e) {
-        std::cerr << e.what() << std::endl;
-    }
+	    std::cout << "Searching 42 in vector..." << std::endl;
+	    it = easyfind(v, 42);
+	    std::cout << "Found: " << *it << std::endl;
+	}
+	catch (const NotFoundException& e) {
+	    std::cerr << e.what() << std::endl;
+	}
 
-    std::cout << "Testing with list:" << std::endl;
-    try {
-        std::list<int> l;
-        l.push_back(10);
-        l.push_back(20);
-        l.push_back(30);
+	std::cout << "Testing with list:" << std::endl;
+	try {
+	    std::list<int> l;
+	    l.push_back(10);
+	    l.push_back(20);
+	    l.push_back(30);
 
-        std::list<int>::iterator it = easyfind(l, 20);
-        std::cout << "Found in list: " << *it << std::endl;
+	    std::list<int>::iterator it = easyfind(l, 20);
+	    std::cout << "Found in list: " << *it << std::endl;
 
-        easyfind(l, 99);
-    }
-    catch (const std::exception& e) {
-        std::cerr << e.what() << std::endl;
-    }
+	    easyfind(l, 99);
+	}
+	catch (const std::exception& e) {
+	    std::cerr << e.what() << std::endl;
+	}
 
 	std::cout << "Testing with deque" << std::endl;
 	try {
 		std::deque<int> d;
 		d.push_back(11);
-        d.push_back(22);
-        d.push_back(33);
+	    d.push_back(22);
+	    d.push_back(33);
 
 		std::deque<int>::iterator it = easyfind(d, 11);
 		std::cout << "Found in deque " << *it << std::endl;
@@ -65,5 +65,5 @@ int main() {
 	catch (const std::exception &e) {
 		std::cerr << e.what() << std::endl;
 	}
-    return 0;
+	return 0;
 }
