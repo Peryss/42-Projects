@@ -17,11 +17,11 @@
 
 bool bad_filename(char* in) {
 	std::string input = in;
-	if (input.size() < 5)
+	if (input.size() < 1)
 		return true;
-	const std::string ext = ".txt";
-	if (input.compare(input.size() - ext.size(), ext.size(), ext) != 0)
-		return true;
+	//const std::string ext = ".txt";
+	//if (input.compare(input.size() - ext.size(), ext.size(), ext) != 0)
+	//	return true;
 	return false ;
 }
 
