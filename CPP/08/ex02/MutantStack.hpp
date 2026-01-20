@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 10:33:25 by pvass             #+#    #+#             */
-/*   Updated: 2025/09/17 10:34:19 by pvass            ###   ########.fr       */
+/*   Updated: 2025/10/07 16:09:25 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 #include <stack>
 #include <deque>
 
-template <typename T, class Container = std::deque<T> >
-class MutantStack : public std::stack<T, Container> {
+template <typename T, class Container = std::deque<T> > class MutantStack : public std::stack<T, Container> {
 public:
 	// Inherit std::stack constructors
 	MutantStack() : std::stack<T, Container>() {}

@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 10:33:13 by pvass             #+#    #+#             */
-/*   Updated: 2025/09/17 10:33:14 by pvass            ###   ########.fr       */
+/*   Updated: 2025/10/07 16:06:49 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int main() {
 	    std::cout << "Longest span:  " << sp3.longestSpan() << std::endl;
 
 	    std::cout << std::endl << "=== Test addNumbers overfill ===" << std::endl;
-	    Span sp4(3);
+	    Span sp4(1);
 	    std::vector<int> small;
 	    small.push_back(1);
 	    small.push_back(2);

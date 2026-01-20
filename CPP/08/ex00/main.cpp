@@ -6,7 +6,7 @@
 /*   By: pvass <pvass@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 10:33:10 by pvass             #+#    #+#             */
-/*   Updated: 2025/09/17 10:33:11 by pvass            ###   ########.fr       */
+/*   Updated: 2025/10/07 15:39:24 by pvass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int main() {
 	    std::cerr << e.what() << std::endl;
 	}
 
-	std::cout << "Testing with list:" << std::endl;
+	std::cout << std::endl << "Testing with list:" << std::endl;
 	try {
 	    std::list<int> l;
 	    l.push_back(10);
@@ -57,7 +57,7 @@ int main() {
 	    d.push_back(33);
 
 		std::deque<int>::iterator it = easyfind(d, 11);
-		std::cout << "Found in deque " << *it << std::endl;
+		std::cout << "Found in deque: " << *it << std::endl;
 
 		easyfind(d, 0);
 
